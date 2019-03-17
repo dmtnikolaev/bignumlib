@@ -19,5 +19,7 @@ char *get_error_message(error_t err) {
 }
 
 void handle_error(error_t err) {
-    printf("Error: %s. Code: %d", get_error_message(err), (int)err);
+    if (FAIL(err)) {
+        printf("Error: %s. Code: %d", get_error_message(err), (int)err);
+    }
 }
