@@ -63,3 +63,9 @@ error_t readline(char **str, size_t *str_len) {
 	return freadline(str, str_len, stdin);
 }
 
+void swap(void *a, void *b) {
+	void *t;
+	t = a;
+	a = b;
+	b = t;
+}

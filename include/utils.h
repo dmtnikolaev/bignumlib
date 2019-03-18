@@ -7,6 +7,15 @@
 #include "bignumlib-error.h"
 
 /**
+ * Макрос, возвращающий максимальное из двух чисел.
+ * 
+ * @param a Первое число.
+ * @param b Второе число.
+ * @return a, если a > b; b, если b >= a;
+ */
+#define MAX(a, b) ( ((a)>(b)) ? (a) : (b) )
+
+/**
  * Читает неограниченную строку из файла, автоматически реаллоцируя память.
  * Строка будет читать до ввода переноса строки, который в саму строку
  * добавлен не будет.
@@ -26,5 +35,13 @@ error_t freadline(char **str, size_t *str_len, FILE *f);
  * @return error_t Код ошибки или 0, если успешно.
  */
 error_t readline(char **str, size_t *str_len);
+
+/**
+ * Переставляет a и b местами.
+ * 
+ * @param a Первый объект.
+ * @param b Второй объект.
+ */
+void swap(void *a, void *b);
 
 #endif /* !UTILS_H */

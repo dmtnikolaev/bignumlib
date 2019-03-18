@@ -1,7 +1,29 @@
 #include "bigint.h"
 
+#include <stdlib.h>
+
+#include "bignat.h"
+#include "bignumlib-error.h"
+
 error_t BigInt_new(BigInt **a) {
-    return IE_NOTIMPLEMENTED;
+    error_t err;
+    BigNat *nat;
+
+    *a = (BigInt *)malloc(sizeof(BigInt));
+    if (*a == NULL) {
+        return PE_ALLOC;
+    }
+
+    err = BigNat_new(&nat);
+    if (FAIL(err)) {
+        free(nat);
+        return err;
+    }
+
+    (*a)->nat = nat;
+    (*a)->sign = 0;
+
+    return SUCCESS;
 }
 
 void BigInt_destroy(BigNat *a) {   
@@ -33,7 +55,20 @@ void BigInt_negate(const BigInt *a, BigInt *c) {
 }
 
 error_t BigInt_add(const BigInt *a, const BigInt *b, BigInt *c) {
-    return IE_NOTIMPLEMENTED;
+    if (a->sign == b->sign) {
+        c->sign = a->sign;
+        return BigNat_sum(a->nat, b->nat, c->nat);
+    }
+    else {
+        if (BigNat_compare(a->nat, b->nat) >= 0) {
+            c->sign = a->sign;
+            return BigNat_sub(a->nat, b->nat, c->nat);
+        }
+        else {
+            c->sign = b->sign;
+            return BigNat_sub(b->nat, a->nat, c->nat);
+        }
+    }
 }
 
 error_t BigInt_sub(const BigInt *a, const BigInt *b, BigInt *c) {
