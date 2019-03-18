@@ -22,6 +22,8 @@
  */
 typedef enum {
     PE_ALLOC = 1,
+    PE_OVERFLOW = 2,
+    PE_READING = 3,
 
     IE_INVALIDPARAM = 51,
     IE_NOTIMPLEMENTED = 52,
