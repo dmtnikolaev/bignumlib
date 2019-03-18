@@ -68,7 +68,6 @@ error_t BigNat_new(BigNat **a);
  * @note Не забудьте обнулить a->size.
  * 
  * @param a Число.
- * @return error_t 
  * 
  * @author
  */
@@ -97,18 +96,18 @@ error_t BigNat_resize(BigNat *a, size_t new_size);
 * 
 * @author
 */
-int BigNat_is_number(BigNat *a);
+int BigNat_is_number(const BigNat *a);
 
 /**
  * Создает новое число на основе его строкого представления.
  * 
  * @param a Новое число.
- * @param str СтрокаЮ содержащая число.
+ * @param str Строка, содержащая число.
  * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_from_string(BigNat *a, char *str);
+error_t BigNat_from_string(BigNat *a, const char *str);
 
 /**
  * Преобразует число в строку.
@@ -181,7 +180,7 @@ int BigNat_is_zero(const BigNat *a);
  * 
  * @author
  */
-error_t BigNat_add_one(const BigNat *a, const BigNat *c);
+error_t BigNat_add_one(const BigNat *a, BigNat *c);
 
 /**
  * Складывает два числа.
@@ -193,7 +192,7 @@ error_t BigNat_add_one(const BigNat *a, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_sum(const BigNat *a,const  BigNat *b, const BigNat *c);
+error_t BigNat_sum(const BigNat *a, const  BigNat *b, BigNat *c);
 
 /**
  * Вычитает из первого числа второе.
@@ -207,7 +206,7 @@ error_t BigNat_sum(const BigNat *a,const  BigNat *b, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_sub(const BigNat *a,const  BigNat *b, const BigNat *c);
+error_t BigNat_sub(const BigNat *a, const  BigNat *b, BigNat *c);
 
 /**
  * Умножает число на цифру (число в промежутке [0, 9]).
@@ -219,7 +218,7 @@ error_t BigNat_sub(const BigNat *a,const  BigNat *b, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_mul_by_digit(const BigNat *a, digit d, const BigNat *c);
+error_t BigNat_mul_by_digit(const BigNat *a, digit d, BigNat *c);
 
 /**
  * Умножает число на степень 10 (10^k).
@@ -231,7 +230,7 @@ error_t BigNat_mul_by_digit(const BigNat *a, digit d, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_mul_by_exp10(const BigNat *a, int k, const BigNat *c);
+error_t BigNat_mul_by_exp10(const BigNat *a, int k, BigNat *c);
 
 /**
  * Умножает два числа.
@@ -243,7 +242,7 @@ error_t BigNat_mul_by_exp10(const BigNat *a, int k, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_mul(const BigNat *a, const BigNat *b, const BigNat *c);
+error_t BigNat_mul(const BigNat *a, const BigNat *b, BigNat *c);
 
 /**
  * Вычитает из первого числа второе, умноженное на цифру.
@@ -257,7 +256,7 @@ error_t BigNat_mul(const BigNat *a, const BigNat *b, const BigNat *c);
  * @author
  */
 error_t BigNat_sub_proportional(const BigNat *a, const BigNat *b, digit d,
-                                const BigNat *c);
+                                BigNat *c);
 
 /**
  * Вычисляет первую цифру деления первого числа на второе, домноженное на
@@ -271,7 +270,7 @@ error_t BigNat_sub_proportional(const BigNat *a, const BigNat *b, digit d,
  * @author
  */
 error_t BigNat_div_ordered_digit(const BigNat *a, const BigNat *b,
-                                 digit d);
+                                 digit *d);
 
 /**
  * Делит первое число на второе и возвращает частное.
@@ -283,7 +282,7 @@ error_t BigNat_div_ordered_digit(const BigNat *a, const BigNat *b,
  * 
  * @author
  */
-error_t BigNat_div(const BigNat *a, const BigNat *b, const BigNat *c);
+error_t BigNat_div(const BigNat *a, const BigNat *b, BigNat *c);
 
 /**
  * Делит первое число на второе и возвращает остаток.
@@ -295,7 +294,7 @@ error_t BigNat_div(const BigNat *a, const BigNat *b, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_mod(const BigNat *a, const BigNat *b, const BigNat *c);
+error_t BigNat_mod(const BigNat *a, const BigNat *b, BigNat *c);
 
 /**
  * Находит НОД двух чисел.
@@ -307,7 +306,7 @@ error_t BigNat_mod(const BigNat *a, const BigNat *b, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_gcf(const BigNat *a, const BigNat *b, const BigNat *c);
+error_t BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c);
 
 /**
  * Находит НОК двух чисел.
@@ -319,6 +318,6 @@ error_t BigNat_gcf(const BigNat *a, const BigNat *b, const BigNat *c);
  * 
  * @author
  */
-error_t BigNat_lcm(const BigNat *a, const BigNat *b, const BigNat *c);
+error_t BigNat_lcm(const BigNat *a, const BigNat *b, BigNat *c);
 
 #endif /* !BIGNAT_H */
