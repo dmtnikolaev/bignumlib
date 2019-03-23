@@ -18,7 +18,7 @@ void BigInt_new(BigInt **a) {
     (*a)->sign = 0;
 }
 
-void BigInt_destroy(BigNat *a) {   
+void BigInt_destroy(BigInt *a) {
 }
 
 void BigInt_from_nat(BigInt *a, const BigNat *b) {

@@ -12,12 +12,12 @@ typedef struct {
     /**
      * Числитель дроби.
      */
-    BigInt num;
+    BigInt *num;
 
     /**
      * Знаменатель дроби.
      */
-    BigNat denom;
+    BigNat *denom;
 } BigRat;
 
 /**
@@ -43,16 +43,17 @@ void BigRat_destroy(BigRat *a);
  * 
  * @param a Рациональное число
  * @param integ Целое число.
+ * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-void BigRat_from_int(BigRat *a, const BigInt *integ);
+error_t BigRat_from_int(BigRat *a, const BigInt *integ);
 
 /**
  * Преобразует рациональное число в целое.
  * 
- * @param a 
- * @param integ 
+ * @param a Рациональное число.
+ * @param integ Целое число, равное рациональному.
  * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author

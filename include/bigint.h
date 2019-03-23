@@ -35,11 +35,11 @@ void BigInt_new(BigInt **a);
 /**
  * Очищает память, выделенную под число.
  * 
- * @param a Число
+ * @param a Число.
  * 
  * @author
  */
-void BigInt_destroy(BigNat *a);
+void BigInt_destroy(BigInt *a);
 
 /**
  * Преобразует натуральное число в целое.
