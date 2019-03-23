@@ -42,6 +42,12 @@ void BigNat_resize(BigNat *a, size_t new_size) {
         (new_size - a->available_size) * sizeof(digit));
 }
 
+void BigNat_copy(const BigNat *a, BigNat *copy) {
+    BigNat_resize(copy, a->size);
+    memcpy(copy->digits, a->digits, a->size * sizeof(digit));
+    copy->size = a->size;
+}
+
 int BigNat_is_number(const BigNat *a) {
     return 0;
 }

@@ -42,6 +42,14 @@ void BigInt_new(BigInt **a);
 void BigInt_destroy(BigInt *a);
 
 /**
+ * Копирует число.
+ * 
+ * @param a Число.
+ * @param copy Копия числа.
+ */
+void BigInt_copy(const BigInt *a, BigInt *copy);
+
+/**
  * Преобразует натуральное число в целое.
  * 
  * @note По умолчанию натуральное число преобразуем в целое положительное.

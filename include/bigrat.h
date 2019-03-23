@@ -39,6 +39,14 @@ void BigRat_new(BigRat **a);
 void BigRat_destroy(BigRat *a);
 
 /**
+ * Копирует число.
+ * 
+ * @param a Число.
+ * @param copy Копия числа.
+ */
+void BigRat_copy(const BigRat *a, BigRat *copy);
+
+/**
  * Преобразует целое число в рациональное.
  * 
  * @param a Рациональное число

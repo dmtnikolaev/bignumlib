@@ -21,6 +21,11 @@ void BigInt_new(BigInt **a) {
 void BigInt_destroy(BigInt *a) {
 }
 
+void BigInt_copy(const BigInt *a, BigInt *copy) {
+    BigNat_copy(a->nat, copy->nat);
+    copy->sign = a->sign;
+}
+
 void BigInt_from_nat(BigInt *a, const BigNat *b) {
 }
 

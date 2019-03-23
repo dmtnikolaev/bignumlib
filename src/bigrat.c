@@ -10,6 +10,11 @@ void BigRat_new(BigRat **a) {
 void BigRat_destroy(BigRat *a) {
 }
 
+void BigRat_copy(const BigRat *a, BigRat *copy) {
+    BigInt_copy(a->num, copy->num);
+    BigNat_copy(a->denom, copy->denom);
+}
+
 void BigRat_from_int(BigRat *a, const BigInt *integ) {
 }
 

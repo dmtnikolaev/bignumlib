@@ -90,6 +90,14 @@ void BigNat_destroy(BigNat *a);
 void BigNat_resize(BigNat *a, size_t new_size);
 
 /**
+ * Копирует число.
+ * 
+ * @param a Число.
+ * @param copy Копия числа.
+ */
+void BigNat_copy(const BigNat *a, BigNat *copy);
+
+/**
 * Проверяет является ли это число корректным.
 * 
 * @note Проверяйте на NULL и a->size. Используйте эту функцию в других, для
