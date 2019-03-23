@@ -32,11 +32,10 @@ typedef struct {
  * Создает новый многочлен, равный 0.
  * 
  * @param f Новый многочлен.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_new(BigPol **f);
+void BigPol_new(BigPol **f);
 
 /**
  * Очищает память, выделенную под многочлен.
@@ -55,10 +54,9 @@ void BigPol_destroy(BigPol *f);
  * 
  * @param f Многочлен.
  * @param new_size Новое количество коэффициентов.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author */
-error_t BigPol_resize(BigPol *f, const size_t new_size);
+void BigPol_resize(BigPol *f, const size_t new_size);
 
 /**
  * Преобразует строку в многочлен.
@@ -76,11 +74,10 @@ error_t BigPol_from_string(BigPol *f, const char *str);
  * 
  * @param f Многочлен.
  * @param str Строка.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_to_string(const BigPol *f, char **str);
+void BigPol_to_string(const BigPol *f, char **str);
 
 /**
  * Складывает два многочлена.
@@ -88,11 +85,10 @@ error_t BigPol_to_string(const BigPol *f, char **str);
  * @param f Первый многочлен.
  * @param g Второй многочлен.
  * @param h Сумма.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_sum(const BigPol *f, const BigPol *g, BigPol *h);
+void BigPol_sum(const BigPol *f, const BigPol *g, BigPol *h);
 
 /**
  * Вычитает из первого многочлена второй.
@@ -100,11 +96,10 @@ error_t BigPol_sum(const BigPol *f, const BigPol *g, BigPol *h);
  * @param f Первый многочлен.
  * @param g Второй многочлен.
  * @param h Разность.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_sub(const BigPol *f, const BigPol *g, BigPol *h);
+void BigPol_sub(const BigPol *f, const BigPol *g, BigPol *h);
 
 /**
  * Умножает многочлен на скаляр (рациональное число).
@@ -112,11 +107,10 @@ error_t BigPol_sub(const BigPol *f, const BigPol *g, BigPol *h);
  * @param f Многочлен.
  * @param c Скаляр.
  * @param h Результат.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_mul_scalar(const BigPol *f, const BigRat *c, BigPol *h);
+void BigPol_mul_scalar(const BigPol *f, const BigRat *c, BigPol *h);
 
 /**
  * Умножение многочлена на одночлен x^k.
@@ -124,33 +118,30 @@ error_t BigPol_mul_scalar(const BigPol *f, const BigRat *c, BigPol *h);
  * @param f Многочлен.
  * @param k Степень одночлена.
  * @param h Результат.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_mul_expx(const BigPol *f, const BigNat *k, BigPol *h);
+void BigPol_mul_expx(const BigPol *f, const BigNat *k, BigPol *h);
 
 /**
  * Возвращает старший коэффициент многочлена.
  * 
  * @param f Многочлен.
  * @param a_n Старший коэффициент.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_get_leading(const BigPol *f, BigRat *a_n);
+void BigPol_get_leading(const BigPol *f, BigRat *a_n);
 
 /**
  * Возвращает степень многочлена.
  * 
  * @param f Многочлен.
  * @param deg Степень.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_get_deg(const BigPol *f, BigNat *deg);
+void BigPol_get_deg(const BigPol *f, BigNat *deg);
 
 /**
  * Выносит из многочлена НОК знаменателей коэффициентов и НОД числителей.
@@ -162,11 +153,10 @@ error_t BigPol_get_deg(const BigPol *f, BigNat *deg);
  *          соответственно.
  * @param c Дробь, полученная делением НОД числителей коэффициентов на
  *          НОК знаменателей многочлена.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_fac(const BigPol *f, BigPol *h, BigRat *c);
+void BigPol_fac(const BigPol *f, BigPol *h, BigRat *c);
 
 /**
  * Умножает два многочлена.
@@ -174,11 +164,10 @@ error_t BigPol_fac(const BigPol *f, BigPol *h, BigRat *c);
  * @param f Первый многочлен.
  * @param g Второй многочлен.
  * @param h Произведение.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigPol_mul(const BigPol *f, const BigPol *g, BigPol *h);
+void BigPol_mul(const BigPol *f, const BigPol *g, BigPol *h);
 
 /**
  * Возвращает частное от деления многочлена на многочлен при делении с остатком.

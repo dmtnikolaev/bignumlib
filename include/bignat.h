@@ -62,11 +62,10 @@ typedef struct {
  * Создает новое число, равное 0.
  * 
  * @param a Новое число.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_new(BigNat **a);
+void BigNat_new(BigNat **a);
 
 /**
  * Очищает память, выделенную под число.
@@ -85,11 +84,10 @@ void BigNat_destroy(BigNat *a);
  * 
  * @param a Число.
  * @param new_size Новый размер.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_resize(BigNat *a, size_t new_size);
+void BigNat_resize(BigNat *a, size_t new_size);
 
 /**
 * Проверяет является ли это число корректным.
@@ -120,11 +118,10 @@ error_t BigNat_from_string(BigNat *a, const char *str);
  * 
  * @param a Число.
  * @param result Строковое представление числа.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_to_string(const BigNat *a, char **result);
+void BigNat_to_string(const BigNat *a, char **result);
 
 /**
  * Возвращает константу 0.
@@ -182,11 +179,10 @@ int BigNat_is_zero(const BigNat *a);
  * 
  * @param a Число.
  * @param c Результат сложения.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_add_one(const BigNat *a, BigNat *c);
+void BigNat_add_one(const BigNat *a, BigNat *c);
 
 /**
  * Складывает два числа.
@@ -194,11 +190,10 @@ error_t BigNat_add_one(const BigNat *a, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Сумма.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_sum(const BigNat *a, const  BigNat *b, BigNat *c);
+void BigNat_sum(const BigNat *a, const  BigNat *b, BigNat *c);
 
 /**
  * Вычитает из первого числа второе.
@@ -220,11 +215,10 @@ error_t BigNat_sub(const BigNat *a, const  BigNat *b, BigNat *c);
  * @param a Число.
  * @param d Цифра.
  * @param c Результат.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_mul_by_digit(const BigNat *a, digit d, BigNat *c);
+void BigNat_mul_by_digit(const BigNat *a, digit d, BigNat *c);
 
 /**
  * Умножает число на степень 10 (10^k).
@@ -232,11 +226,10 @@ error_t BigNat_mul_by_digit(const BigNat *a, digit d, BigNat *c);
  * @param a Число.
  * @param k Степень 10.
  * @param c Результат.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_mul_by_exp10(const BigNat *a, int k, BigNat *c);
+void BigNat_mul_by_exp10(const BigNat *a, int k, BigNat *c);
 
 /**
  * Умножает два числа.
@@ -244,11 +237,10 @@ error_t BigNat_mul_by_exp10(const BigNat *a, int k, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Произведение.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_mul(const BigNat *a, const BigNat *b, BigNat *c);
+void BigNat_mul(const BigNat *a, const BigNat *b, BigNat *c);
 
 /**
  * Вычитает из первого числа второе, умноженное на цифру.
@@ -308,11 +300,10 @@ error_t BigNat_mod(const BigNat *a, const BigNat *b, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c НОД.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c);
+void BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c);
 
 /**
  * Находит НОК двух чисел.
@@ -320,10 +311,9 @@ error_t BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c НОК.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigNat_lcm(const BigNat *a, const BigNat *b, BigNat *c);
+void BigNat_lcm(const BigNat *a, const BigNat *b, BigNat *c);
 
 #endif /* !BIGNAT_H */

@@ -4,15 +4,13 @@
 #include "bignat.h"
 #include "bignumlib-error.h"
 
-error_t BigRat_new(BigRat **a) {
-    return IE_NOTIMPLEMENTED;
+void BigRat_new(BigRat **a) {
 }
 
 void BigRat_destroy(BigRat *a) {
 }
 
-error_t BigRat_from_int(BigRat *a, const BigInt *integ) {
-    return IE_NOTIMPLEMENTED;
+void BigRat_from_int(BigRat *a, const BigInt *integ) {
 }
 
 error_t BigRat_to_int(const BigRat *a, BigInt *integ) {
@@ -23,28 +21,23 @@ error_t BigRat_from_string(BigRat *a, const char *str) {
     return IE_NOTIMPLEMENTED;
 }
 
-error_t BigRat_to_string(const BigRat *a, char **str) {
-    return IE_NOTIMPLEMENTED;
+void BigRat_to_string(const BigRat *a, char **str) {
 }
 
-error_t BigRat_reduce(BigRat *a) {
-    return IE_NOTIMPLEMENTED;
+void BigRat_reduce(BigRat *a) {
 }
 
 int BigRat_is_int(const BigRat *a) {
     return 0;
 }
 
-error_t BigRat_sum(const BigRat *a, const BigRat *b, BigRat *c) {
-    return IE_NOTIMPLEMENTED;
+void BigRat_sum(const BigRat *a, const BigRat *b, BigRat *c) {
 }
 
-error_t BigRat_sub(const BigRat *a, const BigRat *b, BigRat *c) {
-    return IE_NOTIMPLEMENTED;
+void BigRat_sub(const BigRat *a, const BigRat *b, BigRat *c) {
 }
 
-error_t BigRat_mul(const BigRat *a, const BigRat *b, BigRat *c) {
-    return IE_NOTIMPLEMENTED;
+void BigRat_mul(const BigRat *a, const BigRat *b, BigRat *c) {
 }
 
 error_t BigRat_div(const BigRat *a, const BigRat *b, BigRat *c) {

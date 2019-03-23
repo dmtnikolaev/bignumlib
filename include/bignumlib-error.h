@@ -50,4 +50,13 @@ char *get_error_message(error_t err);
  */
 void handle_error(error_t err);
 
+/**
+ * Обрабатывает ошибку и выходит из программы.
+ * 
+ * @param err Код ошибки.
+ * 
+ * @author
+ */
+void handle_critical_error(error_t err);
+
 #endif /* !BIGNUMLIB_ERROR_H */

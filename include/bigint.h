@@ -27,11 +27,10 @@ typedef struct {
  * Создает новое число, равное 0.
  * 
  * @param a Новое число.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigInt_new(BigInt **a);
+void BigInt_new(BigInt **a);
 
 /**
  * Очищает память, выделенную под число.
@@ -81,11 +80,10 @@ error_t BigInt_from_string(BigInt *a, const char *str);
  * 
  * @param a Число.
  * @param string Строка.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigInt_to_string(const BigInt *a, char **string);
+void BigInt_to_string(const BigInt *a, char **string);
 
 /**
  * Возвращает абсолютное значение числа.
@@ -123,11 +121,10 @@ void BigInt_negate(const BigInt *a, BigInt *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Сумма.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigInt_add(const BigInt *a, const BigInt *b, BigInt *c);
+void BigInt_add(const BigInt *a, const BigInt *b, BigInt *c);
 
 /**
  * Вычитает из первого числа второе.
@@ -135,11 +132,10 @@ error_t BigInt_add(const BigInt *a, const BigInt *b, BigInt *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Разность.
- * @return errno_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigInt_sub(const BigInt *a, const BigInt *b, BigInt *c);
+void BigInt_sub(const BigInt *a, const BigInt *b, BigInt *c);
 
 /**
  * Умножает два числа.
@@ -147,11 +143,10 @@ error_t BigInt_sub(const BigInt *a, const BigInt *b, BigInt *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Произведение.
- * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
-error_t BigInt_mul(const BigInt *a, const BigInt *b, BigInt *c);
+void BigInt_mul(const BigInt *a, const BigInt *b, BigInt *c);
 
 /**
  * Делит целое число на натуральное с остатком.
