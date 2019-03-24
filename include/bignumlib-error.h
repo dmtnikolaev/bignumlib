@@ -26,6 +26,7 @@ typedef enum {
     PE_READING = 3,
     PE_INVALID_CL_ARGS_COUNT = 4,
     PE_ACTION_NOT_FOUND = 5,
+    PE_PARSING = 6,
 
     IE_INVALIDPARAM = 51,
     IE_NOTIMPLEMENTED = 52,

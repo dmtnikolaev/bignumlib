@@ -19,6 +19,9 @@ char *get_error_message(error_t err) {
 
         case PE_ACTION_NOT_FOUND:
             return "action not found";
+
+        case PE_PARSING:
+            return "at parsing";
         
         case IE_INVALIDPARAM:
             return "(internal) parameter of function is invalid";

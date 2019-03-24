@@ -93,10 +93,11 @@ void BigRat_to_string(const BigRat *a, char **str);
  * Сокращает дробь.
  * 
  * @param a Дробь.
+ * @param c Несократимая дробь, равная a.
  * 
  * @author
  */
-void BigRat_reduce(BigRat *a);
+void BigRat_reduce(const BigRat *a, BigRat *c);
 
 /**
  * Проверяет, является ли число целым (знаменатель равен 1).
@@ -117,6 +118,15 @@ int BigRat_is_int(const BigRat *a);
  * @author
  */
 void BigRat_sum(const BigRat *a, const BigRat *b, BigRat *c);
+
+/**
+ * Приводит дробь к данному знаменателю.
+ * 
+ * @param a Исходная дробь.
+ * @param denom Знаменатель.
+ * @param c Дробь со знаменателем denom, равная исходной.
+ */
+void BigRat_to_denom(const BigRat *a, const BigNat *denom, BigRat *c);
 
 /**
  * Вычитает из первого числа второе.
