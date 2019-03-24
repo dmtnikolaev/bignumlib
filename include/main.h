@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stddef.h>
+
 #include "bignumlib-error.h"
 
 #define DASH '-'
@@ -14,7 +16,7 @@
  * 
  * @author Dmitry Nikolaev.
  */
-int main(int argc, const char **argv);
+int main(int argc, char **argv);
 
 /**
  * Вызывает действие (операцию).
@@ -25,7 +27,7 @@ int main(int argc, const char **argv);
  * 
  * @author Dmitry Nikolaev.
  */
-error_t execute(int argc, const char **argv);
+error_t execute(int argc, char **argv);
 
 /**
  * Убирает дефисы из начала строки.
@@ -46,5 +48,35 @@ void remove_dashes(char *str);
  * @author Dmitry Nikolaev.
  */
 error_t find_action(const char *name, int *i);
+
+/**
+ * Читает аргументы из stdin и вызывает execute.
+ * 
+ * @return error_t Код ошибки или 0, если прошло успешно.
+ */
+error_t debug_execute();
+
+/**
+ * Читает аргументы из stdin.
+ * 
+ * @param argc Количество аргументов.
+ * @param argv Аргументы.
+ * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author Dmitry Nikolaev.
+ */
+error_t read_argv_from_user(int *argc, char ***argv);
+
+/**
+ * Читает одну строку из stdin, напечатав перед этим prompt.
+ * 
+ * @param arg Прочитанная строка.
+ * @param arg_len Длина прочитанной строки.
+ * @param prompt Строка, печатающаяся перед вводом.
+ * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author Dmitry Nikolaev.
+ */
+error_t read_arg_from_stdin(char **arg, size_t *arg_len, const char *prompt);
 
 #endif /* !MAIN_H */
