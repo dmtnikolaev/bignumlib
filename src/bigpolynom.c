@@ -108,3 +108,17 @@ error_t BigPol_div(const BigPol *f, const BigPol *g, BigPol *h) {
     return IE_NOTIMPLEMENTED;
 }
 
+error_t BigPol_mod(const BigPol *f, const BigPol *g, BigPol *h) {
+    return IE_NOTIMPLEMENTED;
+}
+
+error_t BigPol_gcd(const BigPol *f, const BigPol *g, BigPol *h) {
+    return IE_NOTIMPLEMENTED;
+}
+
+void BigPol_der(const BigPol *f, BigPol *h) {
+}
+
+void BigPol_nmr(const BigPol *f, BigPol *h) {
+}
+

@@ -181,4 +181,54 @@ void BigPol_mul(const BigPol *f, const BigPol *g, BigPol *h);
  */
 error_t BigPol_div(const BigPol *f, const BigPol *g, BigPol *h);
 
+/**
+ * Возвращает остаток от деления многочлена на многочлен.
+ * 
+ * @param f Первый многочлен.
+ * @param g Второй многочлен.
+ * @param h Остаток.
+ * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author
+ */
+error_t BigPol_mod(const BigPol *f, const BigPol *g, BigPol *h);
+
+/**
+ * Возвращает НОД двух многочленов.
+ * 
+ * @param f Первый многочлен.
+ * @param g Второй многочлен.
+ * @param h НОД
+ * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author
+ */
+error_t BigPol_gcd(const BigPol *f, const BigPol *g, BigPol *h);
+
+/**
+ * Находит производную от многочлена.
+ * 
+ * @param f Многочлен.
+ * @param h Производная.
+ * 
+ * @author
+ */
+void BigPol_der(const BigPol *f, BigPol *h);
+
+/**
+ * Преобразует многочлен в другой, не имеющий кратных корней.
+ * 
+ * @note У многочлена могут быть кратные корни (x-a)^k, нужно из данного
+ * получить новый многочлен, в котором кратные корни превращены в простые.
+ * Например, (x^2-2x+1)=(x-1)^2 -> x-1
+ *           (x^3-3x^2+4)=(x-2)^2(x+1) -> (x-2)(x+1)=x^2-x-2
+ * 
+ * @param Многочлен
+ * @param Многочлен без кратных корней, но имеющий те же корни, что и исходный.
+ * 
+ * @author
+ * 
+ */
+void BigPol_nmr(const BigPol *f, BigPol *h);
+
 #endif /* !BIGPOLYNOM_H */
