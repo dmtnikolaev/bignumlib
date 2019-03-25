@@ -6,6 +6,48 @@
 #define NAME_LEN_MAX 64
 #define ACTIONS_LEN_MAX 64
 
+#define INIT_ACTION_WITH_ONE_PARAM(T_a, a, a_str, err) do { \
+        T_a##_new(&(a));                                    \
+                                                            \
+        err = T_a##_from_string(a, a_str);                  \
+        if (FAIL(err)) {                                    \
+            T_a##_destroy(a);                               \
+            return err;                                     \
+        }                                                   \
+    }                                                       \
+    while(0);                  
+
+#define INIT_ACTION_WITH_TWO_PARAMS(T_a, T_b, a, b, a_str, b_str, err) do { \
+        T_a##_new(&(a));                                                    \
+        T_b##_new(&(b));                                                    \
+                                                                            \
+        err = T_a##_from_string(a, a_str);                                  \
+        if (FAIL(err)) {                                                    \
+            T_a##_destroy(a);                                               \
+            T_b##_destroy(b);                                               \
+            return err;                                                     \
+        }                                                                   \
+                                                                            \
+        err = T_b##_from_string(b, b_str);                                  \
+        if (FAIL(err)) {                                                    \
+            T_a##_destroy(a);                                               \
+            T_b##_destroy(b);                                               \
+            return err;                                                     \
+        }                                                                   \
+    }                                                                       \
+    while(0);
+
+#define FIN_ACTION_WITH_ONE_PARAM(T_a, a) do { \
+        T_a##_destroy(a);                      \
+    }                                          \
+    while(0);
+
+#define FIN_ACTION_WITH_TWO_PARAMS(T_a, T_b, a, b) do { \
+        T_a##_destroy(a);                               \
+        T_b##_destroy(b);                               \
+    }                                                   \
+    while(0);
+
 /**
  * Функция-обработчик действия.
  */
