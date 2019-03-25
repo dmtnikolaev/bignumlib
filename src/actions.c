@@ -6,6 +6,7 @@
 #include "bigint.h"
 #include "bignumlib-error.h"
 #include "bignat.h"
+#include "bigrat.h"
 #include "utils.h"
 
 error_t help_action(int argc, const char **argv, char **res) {
@@ -427,7 +428,19 @@ error_t bigint_mod_nat_action(int argc, const char **argv, char **res) {
 
 
 error_t bigrat_reduce_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *a, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigRat, a, argv[0], err);
+    BigRat_new(&c);
+
+    BigRat_reduce(a, c);
+    BigRat_to_string(c, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigRat, a);
+    BigRat_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigrat_is_int_action(int argc, const char **argv, char **res) {
@@ -443,19 +456,72 @@ error_t bigrat_to_int_action(int argc, const char **argv, char **res) {
 }
 
 error_t bigrat_sum_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *a, *b, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b, argv[0], argv[1], err);
+    BigRat_new(&c);
+
+    BigRat_sum(a, b, c);
+    BigRat_to_string(c, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b);
+    BigRat_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigrat_sub_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *a, *b, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b, argv[0], argv[1], err);
+    BigRat_new(&c);
+
+    BigRat_sub(a, b, c);
+    BigRat_to_string(c, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b);
+    BigRat_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigrat_mul_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *a, *b, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b, argv[0], argv[1], err);
+    BigRat_new(&c);
+
+    BigRat_mul(a, b, c);
+    BigRat_to_string(c, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b);
+    BigRat_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigrat_div_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *a, *b, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b, argv[0], argv[1], err);
+    BigRat_new(&c);
+
+    BigRat_div(a, b, c);
+    BigRat_to_string(c, res);
+
+    err = BigRat_div(a, b, c);
+    if (SUCC(err)) {
+        BigRat_to_string(c, res);
+    }
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigRat, BigRat, a, b);
+    BigRat_destroy(c);
+
+    return err;
 }
 
 
