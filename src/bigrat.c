@@ -114,6 +114,9 @@ void BigRat_to_string(const BigRat *a, char **str) {
     strcpy(*str, num_str);
     strcpy(*str + num_str_len, "/");
     strcpy(*str + num_str_len + 1, denom_str);
+
+    free(num_str);
+    free(denom_str);
 }
 
 void BigRat_reduce(const BigRat *a, BigRat *b) {

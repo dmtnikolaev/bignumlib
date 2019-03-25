@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
+#include "bignat.h"
 #include "bignumlib-error.h"
 
 /**
@@ -43,5 +44,31 @@ error_t readline(char **str, size_t *str_len);
  * @param b Второй объект.
  */
 void swap(void *a, void *b);
+
+/**
+ * Преобразует цифру в символ.
+ * 
+ * @param d Цифра.
+ * @return char Символ.
+ */
+char digit_to_char(digit d);
+
+/**
+ * Преобразует строку в число [0..9].
+ * 
+ * @param str Строка.
+ * @param d Число.
+ * @return error_t Код ошибки или 0, если успешно.
+ */
+error_t str_to_digit(const char *str, digit *d);
+
+/**
+ * Преобразует символ в число [0..9].
+ * 
+ * @param ch Символ.
+ * @param d Число.
+ * @return error_t Код ошибки или 0, если успешно.
+ */
+error_t char_to_digit(const char ch, digit *d);
 
 #endif /* !UTILS_H */

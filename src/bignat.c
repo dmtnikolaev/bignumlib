@@ -1,5 +1,6 @@
 #include "bignat.h"
 
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -53,10 +54,40 @@ int BigNat_is_number(const BigNat *a) {
 }
 
 error_t BigNat_from_string(BigNat *a, const char *str) {
-    return IE_NOTIMPLEMENTED;
+    size_t i, str_len;
+    error_t err;
+
+    str_len = strlen(str);
+    if (str_len == 0) {
+        return PE_PARSING;
+    }
+
+    BigNat_resize(a, str_len);
+
+    for (i = 0; i < str_len; i++) {
+        err = char_to_digit(str[str_len - i - 1], &a->digits[i]);
+        if (FAIL(err)) {
+            return err;
+        }
+    }
+    
+    a->size = str_len;
+
+    return SUCCESS;
 }
 
 void BigNat_to_string(const BigNat *a, char **result) {
+    size_t i;
+
+    *result = (char *)malloc((a->size + 1) * sizeof(char));
+    if (*result == NULL) {
+        handle_critical_error(PE_ALLOC);
+    }
+
+    for (i = 0; i < a->size; i++) {
+        (*result)[i] = digit_to_char(a->digits[a->size - i - 1]);
+    }
+    (*result)[i] = '\0';
 }
 
 error_t BigNat_zero(BigNat **zero) {

@@ -1,11 +1,13 @@
 #include "utils.h"
 
+#include <ctype.h>
 #include <limits.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "bignat.h"
 #include "bignumlib-error.h"
 
 error_t freadline(char **str, size_t *str_len, FILE *f)
@@ -68,4 +70,35 @@ void swap(void *a, void *b) {
 	t = a;
 	a = b;
 	b = t;
+}
+
+char digit_to_char(digit d) {
+	return d + '0';
+}
+
+error_t str_to_digit(const char *str, digit *d) {
+	size_t i, str_len;
+	error_t err;
+
+	str_len = strlen(str);
+	for (i = 0; i < str_len; i++) {
+		if (str[i] == '0' && i != str_len - 1) {
+			continue;
+		}
+		if (str_len - i > 1) {
+			return PE_PARSING;
+		}
+		err = char_to_digit(str[i], d);
+	}
+
+	return err;
+}
+
+error_t char_to_digit(const char ch, digit *d) {
+	if (isdigit(ch) == 0) {
+		return PE_PARSING;
+	}
+	*d = ch - '0';
+
+	return SUCCESS;
 }

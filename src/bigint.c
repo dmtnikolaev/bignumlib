@@ -1,6 +1,7 @@
 #include "bigint.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "bignat.h"
 #include "bignumlib-error.h"
@@ -34,10 +35,52 @@ error_t BigInt_to_nat(const BigInt *a, BigNat *c) {
 }
 
 error_t BigInt_from_string(BigInt *a, const char *str) {
-    return IE_NOTIMPLEMENTED;
+    error_t err;
+    int shift;
+
+    shift = 0;
+
+    a->sign = 1;
+    if (str[0] == '+' || str[0] == '-') {
+        a->sign = str[0] == '+' ? 1 : -1;
+        shift = 1;
+    }
+
+    err = BigNat_from_string(a->nat, str + shift);
+    if (FAIL(err)) {
+        return err;
+    }
+
+    if (BigNat_is_zero(a->nat)) {
+        a->sign = 0;
+    }
+
+    return SUCCESS;
 }
 
 void BigInt_to_string(const BigInt *a, char **string) {
+    size_t str_len, shift;
+    char *temp;
+
+    shift = 0;
+
+    if (a->sign == -1) {
+        shift = 1;
+    }
+
+    str_len = a->nat->size;
+    *string = (char *)malloc((str_len + shift + 1) * sizeof(char));
+    if (*string == NULL) {
+        handle_critical_error(PE_ALLOC);
+    }
+
+    BigNat_to_string(a->nat, &temp);
+    strcpy(*string + shift, temp);
+    if (a->sign == -1) {
+        (*string)[0] = '-';
+    }
+
+    free(temp);
 }
 
 void BigInt_abs(const BigInt *a, BigNat *c) {
