@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "bigint.h"
 #include "bignumlib-error.h"
 #include "bignat.h"
 #include "utils.h"
@@ -280,15 +281,54 @@ error_t bignat_lcm_action(int argc, const char **argv, char **res) {
 
 
 error_t bigint_abs_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigInt *a;
+    BigNat *c;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigInt, a, argv[0], err);
+    BigNat_new(&c);
+
+    BigInt_abs(a, c);
+    BigNat_to_string(c, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigInt, a);
+    BigNat_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigint_get_sign_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigInt *a;
+    error_t err;
+
+    *res = (char *)malloc(3 * sizeof(char));
+    if (res == NULL) {
+        handle_critical_error(PE_ALLOC);
+    }
+
+    INIT_ACTION_WITH_ONE_PARAM(BigInt, a, argv[0], err);
+
+    sprintf(*res, "%d", BigInt_get_sign(a));
+
+    FIN_ACTION_WITH_ONE_PARAM(BigInt, a);
+
+    return SUCCESS;
 }
 
 error_t bigint_negate_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigInt *a, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigInt, a, argv[0], err);
+    BigInt_new(&c);
+
+    BigInt_negate(a, c);
+    BigInt_to_string(c, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigInt, a);
+    BigInt_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigint_from_nat_action(int argc, const char **argv, char **res) {
@@ -300,23 +340,89 @@ error_t bigint_to_nat_action(int argc, const char **argv, char **res) {
 }
 
 error_t bigint_sum_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigInt *a, *b, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigInt, BigInt, a, b, argv[0], argv[1], err);
+    BigInt_new(&c);
+
+    BigInt_add(a, b, c);
+    BigInt_to_string(c, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigInt, BigInt, a, b);
+    BigInt_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigint_sub_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigInt *a, *b, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigInt, BigInt, a, b, argv[0], argv[1], err);
+    BigInt_new(&c);
+
+    BigInt_sub(a, b, c);
+    BigInt_to_string(c, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigInt, BigInt, a, b);
+    BigInt_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigint_mul_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigInt *a, *b, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigInt, BigInt, a, b, argv[0], argv[1], err);
+    BigInt_new(&c);
+
+    BigInt_mul(a, b, c);
+    BigInt_to_string(c, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigInt, BigInt, a, b);
+    BigInt_destroy(c);
+
+    return SUCCESS;
 }
 
 error_t bigint_div_nat_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigNat *b;
+    BigInt *a, *c;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigInt, BigNat, a, b, argv[0], argv[1], err);
+    BigInt_new(&c);
+
+    err = BigInt_div_nat(a, b, c);
+    if (SUCC(err)) {
+        BigInt_to_string(c, res);
+    }
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigInt, BigNat, a, b);
+    BigInt_destroy(c);
+
+    return err;
 }
 
-error_t bigint_mpd_nat_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+error_t bigint_mod_nat_action(int argc, const char **argv, char **res) {
+    BigNat *b, *c;
+    BigInt *a;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigInt, BigNat, a, b, argv[0], argv[1], err);
+    BigNat_new(&c);
+
+    err = BigInt_mod_nat(a, b, c);
+    if (SUCC(err)) {
+        BigNat_to_string(c, res);
+    }
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigInt, BigNat, a, b);
+    BigNat_destroy(c);
+
+    return err;
 }
 
 
