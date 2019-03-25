@@ -151,10 +151,10 @@ error_t bigpol_get_deg_action(int argc, const char **argv, char **res);
 error_t bigpol_fac_action(int argc, const char **argv, char **res);
 error_t bigpol_mul_action(int argc, const char **argv, char **res);
 error_t bigpol_div_action(int argc, const char **argv, char **res);
-// error_t bigpol__action(int argc, const char **argv, char **res);
-// error_t bigpol__action(int argc, const char **argv, char **res);
-// error_t bigpol__action(int argc, const char **argv, char **res);
-// error_t bigpol__action(int argc, const char **argv, char **res);
+error_t bigpol_mod_action(int argc, const char **argv, char **res);
+error_t bigpol_gcd_action(int argc, const char **argv, char **res);
+error_t bigpol_der_action(int argc, const char **argv, char **res);
+error_t bigpol_nmr_action(int argc, const char **argv, char **res);
 //@}
 
 /**
@@ -224,10 +224,10 @@ static const struct {
     {"pol.fac", bigpol_fac_action, 1},
     {"pol.mul", bigpol_mul_action, 2},
     {"pol.div", bigpol_div_action, 2},
-    // {"pol.", bigpol_, },
-    // {"pol.", bigpol_, },
-    // {"pol.", bigpol_, },
-    // {"pol.", bigpol_, },
+    {"pol.mod", bigpol_mod_action, 2},
+    {"pol.gcd", bigpol_gcd_action, 2},
+    {"pol.der", bigpol_der_action, 1},
+    {"pol.nmr", bigpol_nmr_action, 1},
 };
 
 #endif /* !ACTIONS_H */

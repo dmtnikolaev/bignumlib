@@ -6,6 +6,7 @@
 #include "bigint.h"
 #include "bignumlib-error.h"
 #include "bignat.h"
+#include "bigpolynom.h"
 #include "bigrat.h"
 #include "utils.h"
 
@@ -526,42 +527,222 @@ error_t bigrat_div_action(int argc, const char **argv, char **res) {
 
 
 error_t bigpol_sum_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigPol *f, *g, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    BigPol_sum(f, g, h);
+    BigPol_to_string(h, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g);
+    BigPol_destroy(h);
+
+    return SUCCESS;
 }
 
 error_t bigpol_sub_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigPol *f, *g, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    BigPol_sub(f, g, h);
+    BigPol_to_string(h, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g);
+    BigPol_destroy(h);
+
+    return SUCCESS;
 }
 
 error_t bigpol_mul_scalar_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *c;
+    BigPol *f, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigRat, f, c, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    BigPol_mul_scalar(f, c, h);
+    BigPol_to_string(h, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigRat, f, c);
+    BigPol_destroy(h);
+
+    return SUCCESS;
 }
 
 error_t bigpol_mul_expx_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigNat *k;
+    BigPol *f, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigNat, f, k, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    BigPol_mul_expx(f, k, h);
+    BigPol_to_string(h, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigNat, f, k);
+    BigPol_destroy(h);
+
+    return SUCCESS;
 }
 
 error_t bigpol_get_leading_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *a_n;
+    BigPol *f;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigPol, f, argv[0], err);
+    BigRat_new(&a_n);
+
+    BigPol_get_leading(f, a_n);
+    BigRat_to_string(a_n, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
+    BigRat_destroy(a_n);
+
+    return SUCCESS;
 }
 
 error_t bigpol_get_deg_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigNat *deg;
+    BigPol *f;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigPol, f, argv[0], err);
+    BigNat_new(&deg);
+
+    BigPol_get_deg(f, deg);
+    BigNat_to_string(deg, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
+    BigNat_destroy(deg);
+
+    return SUCCESS;
 }
 
 error_t bigpol_fac_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigRat *c;
+    BigPol *f, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigPol, f, argv[0], err);
+    BigRat_new(&c);
+    BigPol_new(&h);
+
+    BigPol_fac(f, h, c);
+    BigRat_to_string(c, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
+    BigRat_destroy(c);
+    BigPol_destroy(h);
+
+    return SUCCESS;
 }
 
 error_t bigpol_mul_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigPol *f, *g, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    BigPol_mul(f, g, h);
+    BigPol_to_string(h, res);
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g);
+    BigPol_destroy(h);
+
+    return SUCCESS;
 }
 
 error_t bigpol_div_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    BigPol *f, *g, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    err = BigPol_div(f, g, h);
+    if (SUCC(err)) {
+        BigPol_to_string(h, res);
+    }
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g);
+    BigPol_destroy(h);
+
+    return err;
 }
 
-// error_t bigpol__action(int argc, const char **argv, char **res);
-// error_t bigpol__action(int argc, const char **argv, char **res);
-// error_t bigpol__action(int argc, const char **argv, char **res);
-// error_t bigpol__action(int argc, const char **argv, char **res);
+error_t bigpol_mod_action(int argc, const char **argv, char **res) {
+    BigPol *f, *g, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    err = BigPol_mod(f, g, h);
+    if (SUCC(err)) {
+        BigPol_to_string(h, res);
+    }
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g);
+    BigPol_destroy(h);
+
+    return err;
+}
+
+error_t bigpol_gcd_action(int argc, const char **argv, char **res) {
+    BigPol *f, *g, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g, argv[0], argv[1], err);
+    BigPol_new(&h);
+
+    err = BigPol_gcd(f, g, h);
+    if (SUCC(err)) {
+        BigPol_to_string(h, res);
+    }
+
+    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigPol, f, g);
+    BigPol_destroy(h);
+    
+    return err;
+}
+
+error_t bigpol_der_action(int argc, const char **argv, char **res) {
+    BigPol *f, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigPol, f, argv[0], err);
+    BigPol_new(&h);
+
+    BigPol_der(f, h);
+    BigPol_to_string(h, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
+    BigPol_destroy(h);
+    
+    return SUCCESS;
+}
+
+error_t bigpol_nmr_action(int argc, const char **argv, char **res) {
+    BigPol *f, *h;
+    error_t err;
+
+    INIT_ACTION_WITH_ONE_PARAM(BigPol, f, argv[0], err);
+    BigPol_new(&h);
+
+    BigPol_nmr(f, h);
+    BigPol_to_string(h, res);
+
+    FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
+    BigPol_destroy(h);
+
+    return SUCCESS;
+}
