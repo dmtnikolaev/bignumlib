@@ -268,18 +268,34 @@ error_t BigNat_sub_proportional(const BigNat *a, const BigNat *b, digit d,
  * Вычисляет первую цифру деления первого числа на второе, домноженное на
  * 10^k,где k - номер позиции этой цифры (номер считается с нуля).
  * 
+ * @note То есть вычисляет первую слева цифру частного.
+ * 
  * @param a Первое число.
  * @param b Второе число.
  * @param d Результат.
+ * @param k Количество цифр, на которые сдвигается второе число.
  * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author
  */
 error_t BigNat_div_ordered_digit(const BigNat *a, const BigNat *b,
-                                 digit *d);
+                                 digit *d, size_t *k);
 
 /**
- * Делит первое число на второе и возвращает частное.
+ * Делит первое число на второе, возвращает частное и остаток.
+ * 
+ * @param a Первое число.
+ * @param b Второе число.
+ * @param c Частное.
+ * @param r Остаток.
+ * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author
+ */
+error_t BigNat_div_mod(const BigNat *a, const BigNat *b, BigNat *c, BigNat *r);
+
+/**
+ * Делит первое число на второе, возвращает частное/
  * 
  * @param a Первое число.
  * @param b Второе число.

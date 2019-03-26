@@ -193,6 +193,7 @@ error_t bignat_sub_proportional_action(int argc, const char **argv,
 error_t bignat_div_ordered_digit_action(int argc, const char **argv, 
                                         char **res) {
     digit d;
+    size_t k;
     BigNat *a, *b;
     error_t err;
 
@@ -203,7 +204,7 @@ error_t bignat_div_ordered_digit_action(int argc, const char **argv,
 
     INIT_ACTION_WITH_TWO_PARAMS(BigNat, BigNat, a, b, argv[0], argv[1], err);
 
-    err = BigNat_div_ordered_digit(a, b, &d);
+    err = BigNat_div_ordered_digit(a, b, &d, &k);
     if (SUCC(err)) {
         sprintf(*res, "%d", d);
     }
