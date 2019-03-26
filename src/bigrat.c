@@ -15,6 +15,7 @@ void BigRat_new(BigRat **a) {
 
     BigInt_new(&(*a)->num);
     BigNat_new(&(*a)->denom);
+    (*a)->denom->digits[0] = 1;
 }
 
 void BigRat_destroy(BigRat *a) {
@@ -75,7 +76,7 @@ error_t BigRat_from_string(BigRat *a, const char *str) {
     tok_p = strtok(NULL, "/");
     if (tok_p == NULL) {
         free(str_copy);
-        return PE_PARSING;
+        return SUCCESS;
     }
 
     err = BigNat_from_string(a->denom, tok_p);
@@ -84,11 +85,11 @@ error_t BigRat_from_string(BigRat *a, const char *str) {
         return err;
     }
 
-    tok_p = strtok(str_copy, "/");
-    free(str_copy);
+    tok_p = strtok(NULL, "/");
     if (tok_p != NULL) {
         return PE_PARSING;
     }
+    free(str_copy);
 
     return SUCCESS;
 }
@@ -102,28 +103,40 @@ void BigRat_to_string(const BigRat *a, char **str) {
     BigInt_to_string(a->num, &num_str);
     num_str_len = strlen(num_str);
 
-    BigNat_to_string(a->denom, &denom_str);
-    denom_str_len = strlen(denom_str);
+    // Если a/b == a, то не 
+    if (BigRat_is_int(a)) {
+        *str = (char *)malloc((num_str_len+ 1) * sizeof(char));
+        strcpy(*str, num_str);
+        if (str == NULL) {
+            handle_critical_error(PE_ALLOC);
+        }
+    }
+    else {
 
-    *str =(char *)
-        malloc((num_str_len + denom_str_len + 1 + 1) * sizeof(char));
-    if (str == NULL) {
-        handle_critical_error(PE_ALLOC);
+        BigNat_to_string(a->denom, &denom_str);
+        denom_str_len = strlen(denom_str);
+
+        *str =(char *)
+            malloc((num_str_len + denom_str_len + 1 + 1) * sizeof(char));
+        if (str == NULL) {
+            handle_critical_error(PE_ALLOC);
+        }
+
+        strcpy(*str, num_str);
+        strcpy(*str + num_str_len, "/");
+        strcpy(*str + num_str_len + 1, denom_str);
+        
+        free(denom_str);
     }
 
-    strcpy(*str, num_str);
-    strcpy(*str + num_str_len, "/");
-    strcpy(*str + num_str_len + 1, denom_str);
-
     free(num_str);
-    free(denom_str);
 }
 
 void BigRat_reduce(const BigRat *a, BigRat *b) {
     BigNat *gcd;
 
     BigNat_new(&gcd);
-    BigNat_gcf(a->num->nat, b->denom, gcd);
+    BigNat_gcf(a->num->nat, a->denom, gcd);
 
     b->num->sign = a->num->sign;
 
