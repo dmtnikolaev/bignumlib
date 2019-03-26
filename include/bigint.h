@@ -162,6 +162,20 @@ void BigInt_mul(const BigInt *a, const BigInt *b, BigInt *c);
  * @param a Целое число.
  * @param b Натуральное число.
  * @param c Частное.
+ * @param r Остаток.
+ * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author
+ */
+error_t  BigInt_div_mod_nat(const BigInt *a, const BigNat *b, BigInt *c,
+                            BigNat *r);
+
+/**
+ * Делит целое число на натуральное с остатком.
+ * 
+ * @param a Целое число.
+ * @param b Натуральное число.
+ * @param c Частное.
  * @return error_t Код ошибки или 0, если прошло успешно.
  * 
  * @author

@@ -204,7 +204,7 @@ static const struct {
     {"int.sub", bigint_sub_action, 2},
     {"int.mul", bigint_mul_action, 2},
     {"int.divnat", bigint_div_nat_action, 2},
-    {"int.mpdnat", bigint_mod_nat_action, 2},
+    {"int.modnat", bigint_mod_nat_action, 2},
 
     {"rat.reduce", bigrat_reduce_action, 1},
     {"rat.isint", bigrat_is_int_action, 1},
