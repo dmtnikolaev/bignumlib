@@ -1,0 +1,564 @@
+[
+    {
+        "action": "nat.compare",
+        "cases": [
+            {
+                "args": ["1", "0"],
+                "assert": {
+                    "text": "1"
+                }
+            },
+            {
+                "args": ["87612678213987123091209092718214978623498780732", "87612678213987123091209092718214978623498780732"],
+                "assert": {
+                    "text": "0"
+                }
+            },
+            {
+                "args": ["89", "190"],
+                "assert": {
+                    "text": "-1"
+                }
+            },
+            {
+                "args": ["0", "87912"],
+                "assert": {
+                    "text": "-1"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.iszero",
+        "cases": [
+            {
+                "args": ["0"],
+                "assert": {
+                    "text": "1"
+                }
+            },
+            {
+                "args": ["235200"],
+                "assert": {
+                    "text": "0"
+                }
+            },
+            {
+                "args": ["0000000"],
+                "assert": {
+                    "text": "1"
+                }
+            }
+        ]
+    },
+    {
+        "comment": "Via nat.iszero test nat parsing",
+        "action": "nat.iszero",
+        "cases": [
+            {
+                "args": ["0430"],
+                "assert": {
+                    "error_code": 0
+                }
+            },
+            {
+                "args": ["-327"],
+                "assert": {
+                    "error_code": 6
+                }
+            },
+            {
+                "args": ["732874 32423"],
+                "assert": {
+                    "error_code": 6
+                }
+            },
+            {
+                "args": ["5f5"],
+                "assert": {
+                    "error_code": 6
+                }
+            },
+            {
+                "args": ["123b"],
+                "assert": {
+                    "error_code": 6
+                }
+            },
+            {
+                "args": ["  327   "],
+                "assert": {
+                    "error_code": 0
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.addone",
+        "cases": [
+            {
+                "args": ["129873"],
+                "assert": {
+                    "text": "129874"
+                }
+            },
+            {
+                "args": ["999"],
+                "assert": {
+                    "text": "1000"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.sum",
+        "cases": [
+            {
+                "args": ["12", "5"],
+                "assert": {
+                    "text": "17"
+                }
+            },
+            {
+                "args": ["23", "7"],
+                "assert": {
+                    "text": "30"
+                }
+            },
+            {
+                "args": ["1090", "198"],
+                "assert": {
+                    "text": "1288"
+                }
+            },
+            {
+                "args": ["99", "999"],
+                "assert": {
+                    "text": "1098"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.sub",
+        "cases": [
+            {
+                "args": ["12", "5"],
+                "assert": {
+                    "text": "7"
+                }
+            },
+            {
+                "args": ["12", "0"],
+                "assert": {
+                    "text": "12"
+                }
+            },
+            {
+                "args": ["0", "5"],
+                "assert": {
+                    "error_code": 7
+                }
+            },
+            {
+                "args": ["67", "49"],
+                "assert": {
+                    "text": "18"
+                }
+            },
+            {
+                "args": ["12781287", "2178"],
+                "assert": {
+                    "text": "12779109"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.mul",
+        "cases": [
+            {
+                "args": ["12", "5"],
+                "assert": {
+                    "text": "60"
+                }
+            },
+            {
+                "args": ["0", "5"],
+                "assert": {
+                    "text": "0"
+                }
+            },
+            {
+                "args": ["34", "190"],
+                "assert": {
+                    "text": "6460"
+                }
+            },
+            {
+                "args": ["12345679", "9"],
+                "assert": {
+                    "text": "111111111"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.divordereddigit",
+        "cases": [
+            {
+                "args": ["300", "6"],
+                "assert": {
+                    "text": "5"
+                }
+            },
+            {
+                "args": ["1234", "61"],
+                "assert": {
+                    "text": "2"
+                }
+            },
+            {
+                "args": ["5632", "56"],
+                "assert": {
+                    "text": "1"
+                }
+            },
+            {
+                "args": ["12", "50"],
+                "assert": {
+                    "text": "0"
+                }
+            },
+            {
+                "args": ["23894758923478234", "23894758923478234"],
+                "assert": {
+                    "text": "1"
+                }
+            },
+            {
+                "args": ["100", "20"],
+                "assert": {
+                    "text": "5"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.div",
+        "cases": [
+            {
+                "args": ["12", "5"],
+                "assert": {
+                    "text": "2"
+                }
+            },
+            {
+                "args": ["51285", "65"],
+                "assert": {
+                    "text": "789"
+                }
+            },
+            {
+                "args": ["5", "10"],
+                "assert": {
+                    "text": "0"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.mod",
+        "cases": [
+            {
+                "args": ["13", "5"],
+                "assert": {
+                    "text": "3"
+                }
+            },
+            {
+                "args": ["215806", "467"],
+                "assert": {
+                    "text": "52"
+                }
+            },
+            {
+                "args": ["5", "10"],
+                "assert": {
+                    "text": "5"
+                }
+            },
+            {
+                "args": ["10", "5"],
+                "assert": {
+                    "text": "0"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.gcf",
+        "cases": [
+            {
+                "args": ["18", "12"],
+                "assert": {
+                    "text": "6"
+                }
+            },
+            {
+                "args": ["100", "1000"],
+                "assert": {
+                    "text": "100"
+                }
+            },
+            {
+                "args": ["37", "1298074214633706835075030044377087"],
+                "assert": {
+                    "text": "1"
+                }
+            },
+            {
+                "args": ["0", "5"],
+                "assert": {
+                    "text": "5"
+                }
+            }
+        ]
+    },
+    {
+        "action": "nat.lcm",
+        "cases": [
+            {
+                "args": ["13", "5"],
+                "assert": {
+                    "text": "65"
+                }
+            },
+            {
+                "args": ["8", "12"],
+                "assert": {
+                    "text": "24"
+                }
+            },
+            {
+                "args": ["5", "10"],
+                "assert": {
+                    "text": "10"
+                }
+            }
+        ]
+    },
+
+    
+    {
+        "action": "int.sum",
+        "cases": [
+            {
+                "args": ["13", "5"],
+                "assert": {
+                    "text": "18"
+                }
+            },
+            {
+                "args": ["8", "-12"],
+                "assert": {
+                    "text": "-4"
+                }
+            },
+            {
+                "args": ["-3232435", "234323232"],
+                "assert": {
+                    "text": "231090797"
+                }
+            }
+        ]
+    },
+    {
+        "action": "int.sub",
+        "cases": [
+            {
+                "args": ["13", "5"],
+                "assert": {
+                    "text": "8"
+                }
+            },
+            {
+                "args": ["-40", "-12"],
+                "assert": {
+                    "text": "-28"
+                }
+            },
+            {
+                "args": ["0", "10"],
+                "assert": {
+                    "text": "-10"
+                }
+            }
+        ]
+    },
+    {
+        "action": "int.mul",
+        "cases": [
+            {
+                "args": ["-13", "5"],
+                "assert": {
+                    "text": "-65"
+                }
+            },
+            {
+                "args": ["-8", "-12"],
+                "assert": {
+                    "text": "96"
+                }
+            },
+            {
+                "args": ["0", "10"],
+                "assert": {
+                    "text": "0"
+                }
+            }
+        ]
+    },
+    {
+        "action": "int.divnat",
+        "cases": [
+            {
+                "args": ["13", "5"],
+                "assert": {
+                    "text": "2"
+                }
+            },
+            {
+                "args": ["-8", "12"],
+                "assert": {
+                    "text": "-1"
+                }
+            },
+            {
+                "args": ["-3242323", "12340"],
+                "assert": {
+                    "text": "-263"
+                }
+            }
+        ]
+    },
+    {
+        "action": "int.modnat",
+        "cases": [
+            {
+                "args": ["13", "5"],
+                "assert": {
+                    "text": "3"
+                }
+            },
+            {
+                "args": ["-8", "12"],
+                "assert": {
+                    "text": "4"
+                }
+            },
+            {
+                "args": ["-03242323234322", "0912890323"],
+                "assert": {
+                    "text": "263192974"
+                }
+            }
+        ]
+    },
+
+
+
+    {
+        "action": "rat.sum",
+        "cases": [
+            {
+                "args": ["13/1", "5"],
+                "assert": {
+                    "text": "18"
+                }
+            },
+            {
+                "args": ["8/4", "3/8"],
+                "assert": {
+                    "text": "19/8"
+                }
+            },
+            {
+                "args": ["5/34", "0"],
+                "assert": {
+                    "text": "5/34"
+                }
+            }
+        ]
+    },
+    {
+        "action": "rat.sub",
+        "cases": [
+            {
+                "args": ["17/12", "5/3"],
+                "assert": {
+                    "text": "-1/4"
+                }
+            },
+            {
+                "args": ["0", "0"],
+                "assert": {
+                    "text": "0"
+                }
+            },
+            {
+                "args": ["5234", "2387/3245543"],
+                "assert": {
+                    "text": "2426738525/463649"
+
+                }
+            }
+        ]
+    },
+    {
+        "action": "rat.mul",
+        "cases": [
+            {
+                "args": ["10", "-4/5"],
+                "assert": {
+                    "text": "-8"
+                }
+            },
+            {
+                "args": ["90/13", "13/45"],
+                "assert": {
+                    "text": "2"
+                }
+            },
+            {
+                "args": ["18/5", "25/50"],
+                "assert": {
+                    "text": "9/5"
+                }
+            }
+        ]
+    },
+    {
+        "action": "rat.div",
+        "cases": [
+            {
+                "args": ["10", "-4/5"],
+                "assert": {
+                    "text": "-25/2"
+                }
+            },
+            {
+                "args": ["13/13", "13/45"],
+                "assert": {
+                    "text": "45/13"
+                }
+            },
+            {
+                "args": ["5", "45/323"],
+                "assert": {
+                    "text": "323/9"
+                }
+            }
+        ]
+    }
+]
