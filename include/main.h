@@ -53,6 +53,8 @@ error_t find_action(const char *name, int *i);
  * Читает аргументы из stdin и вызывает execute.
  * 
  * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author Stepan Repin.
  */
 error_t debug_execute();
 
@@ -63,7 +65,7 @@ error_t debug_execute();
  * @param argv Аргументы.
  * @return error_t Код ошибки или 0, если прошло успешно.
  * 
- * @author Dmitry Nikolaev.
+ * @author Stepan Repin.
  */
 error_t read_argv_from_user(int *argc, char ***argv);
 
@@ -75,7 +77,7 @@ error_t read_argv_from_user(int *argc, char ***argv);
  * @param prompt Строка, печатающаяся перед вводом.
  * @return error_t Код ошибки или 0, если прошло успешно.
  * 
- * @author Dmitry Nikolaev.
+ * @author Stepan Repin.
  */
 error_t read_arg_from_stdin(char **arg, size_t *arg_len, const char *prompt);
 

@@ -1,3 +1,7 @@
+//
+// @author Stepan Repin.
+//
+
 #ifndef BIGRAT_H
 #define BIGRAT_H
 
@@ -24,8 +28,6 @@ typedef struct {
  * Создает новое рациональное число, равное 0/1.
  * 
  * @param a Новое число.
- * 
- * @author
  */
 void BigRat_new(BigRat **a);
 
@@ -33,8 +35,6 @@ void BigRat_new(BigRat **a);
  * Очищает память, выделенную под число.
  * 
  * @param a Число
- * 
- * @author
  */
 void BigRat_destroy(BigRat *a);
 
@@ -52,8 +52,6 @@ void BigRat_copy(const BigRat *a, BigRat *copy);
  * @param a Рациональное число
  * @param integ Целое число.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigRat_from_int(BigRat *a, const BigInt *integ);
 
@@ -63,8 +61,6 @@ error_t BigRat_from_int(BigRat *a, const BigInt *integ);
  * @param a Рациональное число.
  * @param integ Целое число, равное рациональному.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigRat_to_int(const BigRat *a, BigInt *integ);
 
@@ -74,8 +70,6 @@ error_t BigRat_to_int(const BigRat *a, BigInt *integ);
  * @param a Число.
  * @param str Строка.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigRat_from_string(BigRat *a, const char *str);
 
@@ -84,8 +78,6 @@ error_t BigRat_from_string(BigRat *a, const char *str);
  * 
  * @param a Число.
  * @param str Строка.
- * 
- * @author
  */
 void BigRat_to_string(const BigRat *a, char **str);
 
@@ -94,8 +86,6 @@ void BigRat_to_string(const BigRat *a, char **str);
  * 
  * @param a Дробь.
  * @param c Несократимая дробь, равная a.
- * 
- * @author
  */
 void BigRat_reduce(const BigRat *a, BigRat *c);
 
@@ -103,8 +93,6 @@ void BigRat_reduce(const BigRat *a, BigRat *c);
  * Проверяет, является ли число целым (знаменатель равен 1).
  * 
  * @param a Число.
- * 
- * @author
  */
 int BigRat_is_int(const BigRat *a);
 
@@ -114,8 +102,6 @@ int BigRat_is_int(const BigRat *a);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Сумма.
- * 
- * @author
  */
 void BigRat_sum(const BigRat *a, const BigRat *b, BigRat *c);
 
@@ -134,8 +120,6 @@ void BigRat_to_denom(const BigRat *a, const BigNat *denom, BigRat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Разность.
- * 
- * @author
  */
 void BigRat_sub(const BigRat *a, const BigRat *b, BigRat *c);
 
@@ -145,8 +129,6 @@ void BigRat_sub(const BigRat *a, const BigRat *b, BigRat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Произведение.
- * 
- * @author
  */
 void BigRat_mul(const BigRat *a, const BigRat *b, BigRat *c);
 
@@ -157,8 +139,6 @@ void BigRat_mul(const BigRat *a, const BigRat *b, BigRat *c);
  * @param b Второе число.
  * @param c Частное.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigRat_div(const BigRat *a, const BigRat *b, BigRat *c);
 

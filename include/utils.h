@@ -13,6 +13,8 @@
  * @param a Первое число.
  * @param b Второе число.
  * @return a, если a > b; b, если b >= a;
+ * 
+ * @author Stepan Repin.
  */
 #define MAX(a, b) ( ((a)>(b)) ? (a) : (b) )
 
@@ -25,6 +27,8 @@
  * @param str_len Длина стоки.
  * @param f Файл, из которого производится чтение.
  * @return error_t Код ошибки или 0, если прошло успешно.
+ * 
+ * @author Stepan Repin.
  */
 error_t freadline(char **str, size_t *str_len, FILE *f);
 
@@ -34,6 +38,8 @@ error_t freadline(char **str, size_t *str_len, FILE *f);
  * @param str Прочитанная строка (можно заранее аллоцировать).
  * @param str_len Длина строки.
  * @return error_t Код ошибки или 0, если успешно.
+ * 
+ * @author Stepan Repin.
  */
 error_t readline(char **str, size_t *str_len);
 
@@ -42,6 +48,8 @@ error_t readline(char **str, size_t *str_len);
  * 
  * @param a Первый объект.
  * @param b Второй объект.
+ * 
+ * @author Stepan Repin.
  */
 void swap(void *a, void *b);
 
@@ -50,6 +58,8 @@ void swap(void *a, void *b);
  * 
  * @param d Цифра.
  * @return char Символ.
+ * 
+ * @author Stepan Repin.
  */
 char digit_to_char(digit d);
 
@@ -59,6 +69,8 @@ char digit_to_char(digit d);
  * @param str Строка.
  * @param d Число.
  * @return error_t Код ошибки или 0, если успешно.
+ * 
+ * @author Dmitry Nikolaev.
  */
 error_t str_to_digit(const char *str, digit *d);
 
@@ -68,6 +80,8 @@ error_t str_to_digit(const char *str, digit *d);
  * @param ch Символ.
  * @param d Число.
  * @return error_t Код ошибки или 0, если успешно.
+ * 
+ * @author Dmitry Nikolaev.
  */
 error_t char_to_digit(const char ch, digit *d);
 

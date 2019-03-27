@@ -1,3 +1,7 @@
+//
+// @author Danil Novikov.
+//
+
 #ifndef BIGPOLYNOM_H
 #define BIGPOLYNOM_H
 
@@ -32,8 +36,6 @@ typedef struct {
  * Создает новый многочлен, равный 0.
  * 
  * @param f Новый многочлен.
- * 
- * @author
  */
 void BigPol_new(BigPol **f);
 
@@ -41,8 +43,6 @@ void BigPol_new(BigPol **f);
  * Очищает память, выделенную под многочлен.
  * 
  * @param f Многочлен.
- * 
- * @author
  */
 void BigPol_destroy(BigPol *f);
 
@@ -54,8 +54,7 @@ void BigPol_destroy(BigPol *f);
  * 
  * @param f Многочлен.
  * @param new_size Новое количество коэффициентов.
- * 
- * @author */
+ */
 void BigPol_resize(BigPol *f, const size_t new_size);
 
 /**
@@ -64,8 +63,6 @@ void BigPol_resize(BigPol *f, const size_t new_size);
  * @param f Многочлен.
  * @param str Строка.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigPol_from_string(BigPol *f, const char *str);
 
@@ -74,8 +71,6 @@ error_t BigPol_from_string(BigPol *f, const char *str);
  * 
  * @param f Многочлен.
  * @param str Строка.
- * 
- * @author
  */
 void BigPol_to_string(const BigPol *f, char **str);
 
@@ -85,8 +80,6 @@ void BigPol_to_string(const BigPol *f, char **str);
  * @param f Первый многочлен.
  * @param g Второй многочлен.
  * @param h Сумма.
- * 
- * @author
  */
 void BigPol_sum(const BigPol *f, const BigPol *g, BigPol *h);
 
@@ -96,8 +89,6 @@ void BigPol_sum(const BigPol *f, const BigPol *g, BigPol *h);
  * @param f Первый многочлен.
  * @param g Второй многочлен.
  * @param h Разность.
- * 
- * @author
  */
 void BigPol_sub(const BigPol *f, const BigPol *g, BigPol *h);
 
@@ -107,8 +98,6 @@ void BigPol_sub(const BigPol *f, const BigPol *g, BigPol *h);
  * @param f Многочлен.
  * @param c Скаляр.
  * @param h Результат.
- * 
- * @author
  */
 void BigPol_mul_scalar(const BigPol *f, const BigRat *c, BigPol *h);
 
@@ -118,8 +107,6 @@ void BigPol_mul_scalar(const BigPol *f, const BigRat *c, BigPol *h);
  * @param f Многочлен.
  * @param k Степень одночлена.
  * @param h Результат.
- * 
- * @author
  */
 void BigPol_mul_expx(const BigPol *f, const BigNat *k, BigPol *h);
 
@@ -128,8 +115,6 @@ void BigPol_mul_expx(const BigPol *f, const BigNat *k, BigPol *h);
  * 
  * @param f Многочлен.
  * @param a_n Старший коэффициент.
- * 
- * @author
  */
 void BigPol_get_leading(const BigPol *f, BigRat *a_n);
 
@@ -138,8 +123,6 @@ void BigPol_get_leading(const BigPol *f, BigRat *a_n);
  * 
  * @param f Многочлен.
  * @param deg Степень.
- * 
- * @author
  */
 void BigPol_get_deg(const BigPol *f, BigNat *deg);
 
@@ -153,8 +136,6 @@ void BigPol_get_deg(const BigPol *f, BigNat *deg);
  *          соответственно.
  * @param c Дробь, полученная делением НОД числителей коэффициентов на
  *          НОК знаменателей многочлена.
- * 
- * @author
  */
 void BigPol_fac(const BigPol *f, BigPol *h, BigRat *c);
 
@@ -164,8 +145,6 @@ void BigPol_fac(const BigPol *f, BigPol *h, BigRat *c);
  * @param f Первый многочлен.
  * @param g Второй многочлен.
  * @param h Произведение.
- * 
- * @author
  */
 void BigPol_mul(const BigPol *f, const BigPol *g, BigPol *h);
 
@@ -176,8 +155,6 @@ void BigPol_mul(const BigPol *f, const BigPol *g, BigPol *h);
  * @param g Второй многочлен.
  * @param h Частное.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigPol_div(const BigPol *f, const BigPol *g, BigPol *h);
 
@@ -188,8 +165,6 @@ error_t BigPol_div(const BigPol *f, const BigPol *g, BigPol *h);
  * @param g Второй многочлен.
  * @param h Остаток.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigPol_mod(const BigPol *f, const BigPol *g, BigPol *h);
 
@@ -200,8 +175,6 @@ error_t BigPol_mod(const BigPol *f, const BigPol *g, BigPol *h);
  * @param g Второй многочлен.
  * @param h НОД
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigPol_gcd(const BigPol *f, const BigPol *g, BigPol *h);
 
@@ -210,8 +183,6 @@ error_t BigPol_gcd(const BigPol *f, const BigPol *g, BigPol *h);
  * 
  * @param f Многочлен.
  * @param h Производная.
- * 
- * @author
  */
 void BigPol_der(const BigPol *f, BigPol *h);
 
@@ -225,9 +196,6 @@ void BigPol_der(const BigPol *f, BigPol *h);
  * 
  * @param Многочлен
  * @param Многочлен без кратных корней, но имеющий те же корни, что и исходный.
- * 
- * @author
- * 
  */
 void BigPol_nmr(const BigPol *f, BigPol *h);
 

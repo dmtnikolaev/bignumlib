@@ -1,3 +1,7 @@
+//
+// @author Egor Tuliandin.
+//
+
 #ifndef BIGNAT_H
 #define BIGNAT_H
 
@@ -62,8 +66,6 @@ typedef struct {
  * Создает новое число, равное 0.
  * 
  * @param a Новое число.
- * 
- * @author
  */
 void BigNat_new(BigNat **a);
 
@@ -73,8 +75,6 @@ void BigNat_new(BigNat **a);
  * @note Не забудьте обнулить a->size.
  * 
  * @param a Число.
- * 
- * @author
  */
 void BigNat_destroy(BigNat *a);
 
@@ -84,8 +84,6 @@ void BigNat_destroy(BigNat *a);
  * 
  * @param a Число.
  * @param new_size Новый размер.
- * 
- * @author
  */
 void BigNat_resize(BigNat *a, size_t new_size);
 
@@ -105,8 +103,6 @@ void BigNat_copy(const BigNat *a, BigNat *copy);
 * 
 * @param a Число.
 * @return int Возвращает число, если число корректное; иначе - 0.
-* 
-* @author
 */
 int BigNat_is_number(const BigNat *a);
 
@@ -116,8 +112,6 @@ int BigNat_is_number(const BigNat *a);
  * @param a Новое число.
  * @param str Строка, содержащая число.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_from_string(BigNat *a, const char *str);
 
@@ -126,8 +120,6 @@ error_t BigNat_from_string(BigNat *a, const char *str);
  * 
  * @param a Число.
  * @param result Строковое представление числа.
- * 
- * @author
  */
 void BigNat_to_string(const BigNat *a, char **result);
 
@@ -138,8 +130,6 @@ void BigNat_to_string(const BigNat *a, char **result);
  * 
  * @param zero Полученная константа.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_zero(BigNat **zero);
 
@@ -150,8 +140,6 @@ error_t BigNat_zero(BigNat **zero);
  * 
  * @param zero Полученная константа.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_one(BigNat **one);
 
@@ -163,8 +151,6 @@ error_t BigNat_one(BigNat **one);
  * @return int Возвращает положительное число, если первое
  *             больше второго; 0, если числа равны; иначе
  *             отрицательное число.
- * 
- * @author
  */
 int BigNat_compare(const BigNat *a, const BigNat *b);
 
@@ -175,8 +161,6 @@ int BigNat_compare(const BigNat *a, const BigNat *b);
  * 
  * @param a Число.
  * @return int Положительное число, если равно 0. Иначе 0.
- * 
- * @author
  */
 int BigNat_is_zero(const BigNat *a);
 
@@ -187,8 +171,6 @@ int BigNat_is_zero(const BigNat *a);
  * 
  * @param a Число.
  * @param c Результат сложения.
- * 
- * @author
  */
 void BigNat_add_one(const BigNat *a, BigNat *c);
 
@@ -198,8 +180,6 @@ void BigNat_add_one(const BigNat *a, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Сумма.
- * 
- * @author
  */
 void BigNat_sum(const BigNat *a, const  BigNat *b, BigNat *c);
 
@@ -212,8 +192,6 @@ void BigNat_sum(const BigNat *a, const  BigNat *b, BigNat *c);
  * @param b Второе число.
  * @param c Разность.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_sub(const BigNat *a, const  BigNat *b, BigNat *c);
 
@@ -223,8 +201,6 @@ error_t BigNat_sub(const BigNat *a, const  BigNat *b, BigNat *c);
  * @param a Число.
  * @param d Цифра.
  * @param c Результат.
- * 
- * @author
  */
 void BigNat_mul_by_digit(const BigNat *a, digit d, BigNat *c);
 
@@ -234,8 +210,6 @@ void BigNat_mul_by_digit(const BigNat *a, digit d, BigNat *c);
  * @param a Число.
  * @param k Степень 10.
  * @param c Результат.
- * 
- * @author
  */
 void BigNat_mul_by_exp10(const BigNat *a, int k, BigNat *c);
 
@@ -245,8 +219,6 @@ void BigNat_mul_by_exp10(const BigNat *a, int k, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c Произведение.
- * 
- * @author
  */
 void BigNat_mul(const BigNat *a, const BigNat *b, BigNat *c);
 
@@ -258,8 +230,6 @@ void BigNat_mul(const BigNat *a, const BigNat *b, BigNat *c);
  * @param d Цифра.
  * @param c Результат.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_sub_proportional(const BigNat *a, const BigNat *b, digit d,
                                 BigNat *c);
@@ -275,8 +245,6 @@ error_t BigNat_sub_proportional(const BigNat *a, const BigNat *b, digit d,
  * @param d Результат.
  * @param k Количество цифр, на которые сдвигается второе число.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_div_first_digit(const BigNat *a, const BigNat *b,
                                  digit *d, size_t *k);
@@ -289,8 +257,6 @@ error_t BigNat_div_first_digit(const BigNat *a, const BigNat *b,
  * @param c Частное.
  * @param r Остаток.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_div_mod(const BigNat *a, const BigNat *b, BigNat *c, BigNat *r);
 
@@ -301,8 +267,6 @@ error_t BigNat_div_mod(const BigNat *a, const BigNat *b, BigNat *c, BigNat *r);
  * @param b Второе число.
  * @param c Частное.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_div(const BigNat *a, const BigNat *b, BigNat *c);
 
@@ -313,8 +277,6 @@ error_t BigNat_div(const BigNat *a, const BigNat *b, BigNat *c);
  * @param b Второе число.
  * @param c Остаток.
  * @return error_t Код ошибки или 0, если прошло успешно.
- * 
- * @author
  */
 error_t BigNat_mod(const BigNat *a, const BigNat *b, BigNat *c);
 
@@ -324,8 +286,6 @@ error_t BigNat_mod(const BigNat *a, const BigNat *b, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c НОД.
- * 
- * @author
  */
 void BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c);
 
@@ -335,8 +295,6 @@ void BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c);
  * @param a Первое число.
  * @param b Второе число.
  * @param c НОК.
- * 
- * @author
  */
 void BigNat_lcm(const BigNat *a, const BigNat *b, BigNat *c);
 

@@ -1,13 +1,11 @@
 # Contributors
 
-* Stepan Repin - architect
+* Danil Novikov
 
 * Dmitry Nikolaev - quality control
 
-* Danya Novikov
+* Egor Tuliandin
 
-* Egor Tyulyandin
+* Polina Maltseva
 
-* Konstantin Bamberger
-
-* Polya Maltseva
+* Stepan Repin - architect

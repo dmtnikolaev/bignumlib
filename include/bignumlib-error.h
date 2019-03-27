@@ -1,3 +1,7 @@
+//
+// @author Stepan Repin.
+//
+
 #ifndef BIGNUMLIB_ERROR_H
 #define BIGNUMLIB_ERROR_H
 
@@ -38,8 +42,6 @@ typedef enum {
  * 
  * @param err Код ошибки.
  * @return char* Сообщение.
- * 
- * @author
  */
 char *get_error_message(error_t err);
 
@@ -47,8 +49,6 @@ char *get_error_message(error_t err);
  * Обрабатывает ошибку (выводит в терминал сообщение).
  * 
  * @param err Код ошибки.
- * 
- * @author
  */
 void handle_error(error_t err);
 
@@ -56,8 +56,6 @@ void handle_error(error_t err);
  * Обрабатывает ошибку и выходит из программы.
  * 
  * @param err Код ошибки.
- * 
- * @author
  */
 void handle_critical_error(error_t err);
 
