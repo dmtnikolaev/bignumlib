@@ -32,8 +32,8 @@ typedef enum {
     PE_ACTION_NOT_FOUND = 5,
     PE_PARSING = 6,
     PE_INVALIDOPER = 7,
+    PE_INVALIDPARAM = 8,
 
-    IE_INVALIDPARAM = 51,
     IE_NOTIMPLEMENTED = 52,
 } error_t;
 

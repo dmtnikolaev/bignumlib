@@ -23,7 +23,7 @@ char *get_error_message(error_t err) {
         case PE_PARSING:
             return "at parsing";
         
-        case IE_INVALIDPARAM:
+        case PE_INVALIDPARAM:
             return "(internal) parameter of function is invalid";
 
         case IE_NOTIMPLEMENTED:
