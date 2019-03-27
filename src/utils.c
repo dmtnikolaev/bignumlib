@@ -37,7 +37,6 @@ error_t freadline(char **str, size_t *str_len, FILE *f)
 
 			// Удваиваем текущий размер строки, но проверяем не превысит ли он
 			// SSIZE_MAX.
-			//
 			will_overflow = (buf_size >> (sizeof(size_t) * 8 - 1)) == 1;
 			new_buf_size = will_overflow ? SSIZE_MAX : buf_size*2;
 

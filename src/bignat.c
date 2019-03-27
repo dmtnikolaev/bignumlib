@@ -64,7 +64,6 @@ error_t BigNat_from_string(BigNat *a, const char *str) {
     error_t err;
 
     // Убираем пробелы в начале и в конце строки.
-    //
     str_len = strlen(str);
     while (isspace(str[str_len-1])) {
         str_len--;
@@ -131,9 +130,6 @@ int BigNat_compare(const BigNat *a, const BigNat *b) {
         return -1;
     }
     else {
-        // После того как i станет равно 0 произойдет переполнение
-        // и i превратится в SSIZE_MAX > a->size > 0. Поэтому условие
-        // i >= 0 неверно, и нужно писать именно так, как сделано здесь.
         for (i = a->size-1; i < a->size; i--) {
             if (a->digits[i] == b->digits[i]) {
                 continue;
