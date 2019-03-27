@@ -436,7 +436,7 @@ error_t BigNat_mod(const BigNat *a, const BigNat *b, BigNat *c) {
 //
 // Для вычисления НОД используем алгоритм Евклида.
 //
-void BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c) {
+void BigNat_gcd(const BigNat *a, const BigNat *b, BigNat *c) {
     int comp;
     BigNat *mock_div, *tmp_a, *rem;
 
@@ -485,7 +485,7 @@ void BigNat_lcm(const BigNat *a, const BigNat *b, BigNat *c) {
     BigNat_new(&gcd);
 
     BigNat_mul(a, b, a_b_mul);
-    BigNat_gcf(a, b, gcd);
+    BigNat_gcd(a, b, gcd);
     BigNat_div(a_b_mul, gcd, c);
 
     BigNat_destroy(a_b_mul);

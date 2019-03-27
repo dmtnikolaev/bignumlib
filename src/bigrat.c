@@ -136,7 +136,7 @@ void BigRat_reduce(const BigRat *a, BigRat *b) {
     BigNat *gcd;
 
     BigNat_new(&gcd);
-    BigNat_gcf(a->num->nat, a->denom, gcd);
+    BigNat_gcd(a->num->nat, a->denom, gcd);
 
     b->num->sign = a->num->sign;
 

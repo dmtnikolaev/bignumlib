@@ -254,14 +254,14 @@ error_t bignat_mod_action(int argc, const char **argv, char **res) {
     return err;
 }
 
-error_t bignat_gcf_action(int argc, const char **argv, char **res) {
+error_t bignat_gcd_action(int argc, const char **argv, char **res) {
     BigNat *a, *b, *c;
     error_t err;
 
     INIT_ACTION_WITH_TWO_PARAMS(BigNat, BigNat, a, b, argv[0], argv[1], err);
     BigNat_new(&c);
 
-    BigNat_gcf(a, b, c);
+    BigNat_gcd(a, b, c);
     BigNat_to_string(c, res);
 
     FIN_ACTION_WITH_TWO_PARAMS(BigNat, BigNat, a, b);

@@ -217,7 +217,7 @@ error_t BigNat_mod(const BigNat *a, const BigNat *b, BigNat *c);
  * @param b Второе число.
  * @param c НОД.
  */
-void BigNat_gcf(const BigNat *a, const BigNat *b, BigNat *c);
+void BigNat_gcd(const BigNat *a, const BigNat *b, BigNat *c);
 
 /**
  * Находит НОК двух чисел.

@@ -93,7 +93,7 @@ error_t bignat_div_first_digit_action(int argc, const char **argv,
                                         char **res);
 error_t bignat_div_action(int argc, const char **argv, char **res);
 error_t bignat_mod_action(int argc, const char **argv, char **res);
-error_t bignat_gcf_action(int argc, const char **argv, char **res);
+error_t bignat_gcd_action(int argc, const char **argv, char **res);
 error_t bignat_lcm_action(int argc, const char **argv, char **res);
 //@}
 
@@ -191,7 +191,7 @@ static const struct {
     {"nat.div-first-digit", bignat_div_first_digit_action, 2},
     {"nat.div", bignat_div_action, 2},
     {"nat.mod", bignat_mod_action, 2},
-    {"nat.gcf", bignat_gcf_action, 2},
+    {"nat.gcd", bignat_gcd_action, 2},
     {"nat.lcm", bignat_lcm_action, 2},
 
     {"int.abs", bigint_abs_action, 1},
