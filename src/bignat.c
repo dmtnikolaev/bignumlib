@@ -264,6 +264,11 @@ void BigNat_mul_by_digit(const BigNat *a, digit d, BigNat *c) {
 void BigNat_mul_by_exp10(const BigNat *a, int k, BigNat *c) {
     size_t i;
 
+    if (BigNat_is_zero(a)) {
+        BigNat_copy(a, c);
+        return;
+    }
+
     BigNat_resize(c, a->size + k);
     c->size = a->size + k;
     for (i = c->size - 1; i >= k && i < c->size; i--) {

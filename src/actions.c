@@ -8,6 +8,7 @@
 #include "bignat.h"
 #include "bigpolynom.h"
 #include "bigrat.h"
+#include <errno.h>
 #include "utils.h"
 
 error_t help_action(int argc, const char **argv, char **res) {
@@ -135,6 +136,9 @@ error_t bignat_mul_by_exp10_action(int argc, const char **argv, char **res) {
     b = strtol(argv[1], &err_buff, 10);
     if (*err_buff != 0) {
         return PE_PARSING;
+    }
+    if (errno == ERANGE || b < 0) {
+        return IE_INVALIDPARAM;
     }
 
     INIT_ACTION_WITH_ONE_PARAM(BigNat, a, argv[0], err);
