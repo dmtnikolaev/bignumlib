@@ -36,7 +36,7 @@ error_t execute(int argc, char **argv);
  * 
  * @author Dmitry Nikolaev.
  */
-void remove_dashes(char *str);
+void remove_dashes(char **str);
 
 /**
  * Находит действие по его имени.

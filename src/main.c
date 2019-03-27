@@ -15,7 +15,13 @@
 int main(int argc, char **argv) {
     error_t err;
 
+#ifdef WINDOWS
+    setlocale(LC_ALL, "rus");
+#elif LINUX
     setlocale(LC_ALL, "");
+#else
+    #error "unknown platform"
+#endif
 
 #ifdef DEBUG
     wprintf(L"DEBUG mode\n");
@@ -59,7 +65,7 @@ error_t execute(int argc, char **argv) {
     argc--;
 
     action_name = argv[0];
-    remove_dashes(action_name);
+    remove_dashes(&action_name);
 
     err = find_action(action_name, &i);
     if (FAIL(err)) {
@@ -81,9 +87,9 @@ error_t execute(int argc, char **argv) {
     return err;
 }
 
-void remove_dashes(char *str) {
-    while (*str == DASH) {
-        str++;
+void remove_dashes(char **str) {
+    while (**str == DASH) {
+        (*str)++;
     }
 }
 
