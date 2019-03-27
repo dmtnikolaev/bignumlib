@@ -10,6 +10,7 @@
 #include "actions.h"
 #include "bignat.h"
 #include "bignumlib-error.h"
+#include "consts.h"
 #include "utils.h"
 
 int main(int argc, char **argv) {
@@ -80,7 +81,7 @@ error_t execute(int argc, char **argv) {
 
     err = actions_list[i].action(argc, (const char **)argv, &result);
     if (SUCC(err) && result != NULL) {
-        wprintf(L"%s", result);
+        wprintf(PURE_C_STRING_FORMAT_SPEC, result);
     }
 
     free(result);
@@ -168,7 +169,7 @@ error_t read_arg_from_stdin(char **arg, size_t *arg_len, const char *prompt) {
     error_t err;
     *arg_len = 0;
 
-    wprintf(L"%s", prompt);
+    wprintf(PURE_C_STRING_FORMAT_SPEC, prompt);
     err = readline(arg, arg_len);
     if (FAIL(err)) {
         return err;

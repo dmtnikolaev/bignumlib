@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <wchar.h>
 
+#include "consts.h"
+
 char *get_error_message(error_t err) {
     switch (err) {
         case PE_ALLOC:
@@ -37,13 +39,13 @@ char *get_error_message(error_t err) {
 
 void handle_error(error_t err) {
     if (FAIL(err)) {
-        wprintf(L"Error: %s. Code: %d", get_error_message(err), (int)err);
+        wprintf(L"Error: "PURE_C_STRING_FORMAT_SPEC". Code: %d", get_error_message(err), (int)err);
     }
 }
 
 void handle_critical_error(error_t err) {
     if (FAIL(err)) {
-        wprintf(L"Critical error: %s. Code: %d", get_error_message(err), (int)err);
+        wprintf(L"Critical error: "PURE_C_STRING_FORMAT_SPEC". Code: %d", get_error_message(err), (int)err);
         exit((int)err);
     }
 }

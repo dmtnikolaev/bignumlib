@@ -23,7 +23,7 @@ error_t help_action(int argc, const char **argv, char **res) {
 }
 
 error_t version_action(int argc, const char **argv, char **res) {
-    wprintf(L"bignumlib v%s", BIGNUMLIB_VERSION);
+    wprintf(L"bignumlib v"PURE_C_STRING_FORMAT_SPEC, BIGNUMLIB_VERSION);
     *res = NULL;
     return SUCCESS;
 }
