@@ -29,7 +29,7 @@
         ]
     },
     {
-        "action": "nat.iszero",
+        "action": "nat.is-zero",
         "cases": [
             {
                 "args": ["0"],
@@ -53,7 +53,7 @@
     },
     {
         "comment": "Via nat.iszero test nat parsing",
-        "action": "nat.iszero",
+        "action": "nat.is-zero",
         "cases": [
             {
                 "args": ["0430"],
@@ -94,7 +94,7 @@
         ]
     },
     {
-        "action": "nat.addone",
+        "action": "nat.add-one",
         "cases": [
             {
                 "args": ["129873"],
@@ -204,7 +204,7 @@
         ]
     },
     {
-        "action": "nat.divordereddigit",
+        "action": "nat.div-first-digit",
         "cases": [
             {
                 "args": ["300", "6"],
@@ -297,7 +297,7 @@
         ]
     },
     {
-        "action": "nat.gcf",
+        "action": "nat.gcd",
         "cases": [
             {
                 "args": ["18", "12"],
@@ -420,7 +420,7 @@
         ]
     },
     {
-        "action": "int.divnat",
+        "action": "int.div-nat",
         "cases": [
             {
                 "args": ["13", "5"],
@@ -443,7 +443,7 @@
         ]
     },
     {
-        "action": "int.modnat",
+        "action": "int.mod-nat",
         "cases": [
             {
                 "args": ["13", "5"],

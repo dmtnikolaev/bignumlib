@@ -138,7 +138,7 @@ error_t bignat_mul_by_exp10_action(int argc, const char **argv, char **res) {
         return PE_PARSING;
     }
     if (errno == ERANGE || b < 0) {
-        return IE_INVALIDPARAM;
+        return PE_INVALIDPARAM;
     }
 
     INIT_ACTION_WITH_ONE_PARAM(BigNat, a, argv[0], err);

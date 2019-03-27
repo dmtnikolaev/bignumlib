@@ -40,7 +40,7 @@ void BigInt_from_nat(BigInt *a, const BigNat *b) {
 
 error_t BigInt_to_nat(const BigInt *a, BigNat *c) {
     if (a->sign == -1) {
-        return IE_INVALIDPARAM;
+        return PE_INVALIDPARAM;
     }
     BigInt_abs(a, c);
     return SUCCESS;

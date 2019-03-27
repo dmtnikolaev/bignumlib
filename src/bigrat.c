@@ -36,7 +36,7 @@ error_t BigRat_from_int(BigRat *a, const BigInt *integ) {
     BigInt_copy(integ, a->num);
     
     if (a->denom->size != 1) {
-        return IE_INVALIDPARAM;
+        return PE_INVALIDPARAM;
     }
 
     a->denom->digits[0] = 1;
@@ -49,7 +49,7 @@ error_t BigRat_to_int(const BigRat *a, BigInt *integ) {
         BigInt_copy(a->num, integ);
         return SUCCESS;
     }
-    return IE_INVALIDPARAM;
+    return PE_INVALIDPARAM;
 }
 
 error_t BigRat_from_string(BigRat *a, const char *str) {
@@ -206,7 +206,7 @@ error_t BigRat_div(const BigRat *a, const BigRat *b, BigRat *c) {
     BigRat *t;
     
     if (BigNat_is_zero(b->num->nat)) {
-        return IE_INVALIDPARAM;
+        return PE_INVALIDPARAM;
     }
 
     BigRat_new(&t);
