@@ -79,6 +79,7 @@ error_t version_action(int argc, const char **argv, char **res);
  * @return error_t Код ошибки или 0, если прошло успешно.
  */
 //@{
+error_t bignat_help_action(int argc, const char **argv, char **res);
 error_t bignat_compare_action(int argc, const char **argv, char **res);
 error_t bignat_is_zero_action(int argc, const char **argv, char **res);
 error_t bignat_add_one_action(int argc, const char **argv, char **res);
@@ -106,6 +107,7 @@ error_t bignat_lcm_action(int argc, const char **argv, char **res);
  * @return error_t Код ошибки или 0, если прошло успешно.
  */
 //@{
+error_t bigint_help_action(int argc, const char **argv, char **res);
 error_t bigint_abs_action(int argc, const char **argv, char **res);
 error_t bigint_get_sign_action(int argc, const char **argv, char **res);
 error_t bigint_negate_action(int argc, const char **argv, char **res);
@@ -125,6 +127,7 @@ error_t bigint_mod_nat_action(int argc, const char **argv, char **res);
  * @return error_t Код ошибки или 0, если прошло успешно.
  */
 //@{
+error_t bigrat_help_action(int argc, const char **argv, char **res);
 error_t bigrat_reduce_action(int argc, const char **argv, char **res);
 error_t bigrat_sum_action(int argc, const char **argv, char **res);
 error_t bigrat_sub_action(int argc, const char **argv, char **res);
@@ -141,6 +144,7 @@ error_t bigrat_div_action(int argc, const char **argv, char **res);
  * @return error_t Код ошибки или 0, если прошло успешно.
  */
 //@{
+error_t bigpol_help_action(int argc, const char **argv, char **res);
 error_t bigpol_sum_action(int argc, const char **argv, char **res);
 error_t bigpol_sub_action(int argc, const char **argv, char **res);
 error_t bigpol_mul_scalar_action(int argc, const char **argv, char **res);
@@ -177,8 +181,11 @@ static const struct {
     int param_count;
 } actions_list[ACTIONS_LEN_MAX] = {
     {"help", help_action, 0},
+    {"h", help_action, 0},
     {"version", version_action, 0},
+    {"v", version_action, 0},
 
+    {"nat.help", bignat_help_action, 0},
     {"nat.compare", bignat_compare_action, 2},
     {"nat.is-zero", bignat_is_zero_action, 1},
     {"nat.add-one", bignat_add_one_action, 1},
@@ -194,6 +201,7 @@ static const struct {
     {"nat.gcd", bignat_gcd_action, 2},
     {"nat.lcm", bignat_lcm_action, 2},
 
+    {"int.help", bigint_help_action, 0},
     {"int.abs", bigint_abs_action, 1},
     {"int.sign", bigint_get_sign_action, 1},
     {"int.negate", bigint_negate_action, 1},
@@ -203,12 +211,14 @@ static const struct {
     {"int.div-nat", bigint_div_nat_action, 2},
     {"int.mod-nat", bigint_mod_nat_action, 2},
 
+    {"rat.help", bigrat_help_action, 0},
     {"rat.reduce", bigrat_reduce_action, 1},
     {"rat.sum", bigrat_sum_action, 2},
     {"rat.sub", bigrat_sub_action, 2},
     {"rat.mul", bigrat_mul_action, 2},
     {"rat.div", bigrat_div_action, 2},
 
+    {"pol.help", bigpol_help_action, 0},
     {"pol.sum", bigpol_sum_action, 2},
     {"pol.sub", bigpol_sub_action, 2},
     {"pol.mul-scalar", bigpol_mul_scalar_action, 2},

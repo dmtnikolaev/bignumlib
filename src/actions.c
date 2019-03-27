@@ -1,22 +1,40 @@
 #include "actions.h"
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <wchar.h>
 
 #include "bigint.h"
 #include "bignumlib-error.h"
 #include "bignat.h"
 #include "bigpolynom.h"
 #include "bigrat.h"
-#include <errno.h>
+#include "consts.h"
+#include "help.h"
 #include "utils.h"
 
 error_t help_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    wprintf(L"%ls", help_1);
+    wprintf(L"%ls", help_2);
+    wprintf(L"%ls", help_3);
+    *res = NULL;
+    return SUCCESS;
 }
 
 error_t version_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
+    wprintf(L"bignumlib v%s", BIGNUMLIB_VERSION);
+    *res = NULL;
+    return SUCCESS;
+}
+
+error_t bignat_help_action(int argc, const char **argv, char **res) {
+    wprintf(L"%ls", nat_help_1);
+    wprintf(L"%ls", nat_help_2);
+    wprintf(L"%ls", nat_help_3);
+    wprintf(L"%ls", nat_help_4);
+    *res = NULL;
+    return SUCCESS;
 }
 
 error_t bignat_compare_action(int argc, const char **argv, char **res) {
@@ -286,6 +304,12 @@ error_t bignat_lcm_action(int argc, const char **argv, char **res) {
     return SUCCESS;
 }
 
+error_t bigint_help_action(int argc, const char **argv, char **res) {
+    wprintf(L"%ls", int_help_1);
+    wprintf(L"%ls", int_help_2);
+    *res = NULL;
+    return SUCCESS;
+}
 
 error_t bigint_abs_action(int argc, const char **argv, char **res) {
     BigInt *a;
@@ -424,6 +448,13 @@ error_t bigint_mod_nat_action(int argc, const char **argv, char **res) {
     return err;
 }
 
+error_t bigrat_help_action(int argc, const char **argv, char **res) {
+    wprintf(L"%ls", rat_help_1);
+    wprintf(L"%ls", rat_help_2);
+    wprintf(L"%ls", rat_help_3);
+    *res = NULL;
+    return SUCCESS;
+}
 
 error_t bigrat_reduce_action(int argc, const char **argv, char **res) {
     BigRat *a, *c;
@@ -510,6 +541,11 @@ error_t bigrat_div_action(int argc, const char **argv, char **res) {
     return err;
 }
 
+error_t bigpol_help_action(int argc, const char **argv, char **res) {
+    wprintf(L"%ls", pol_help_1);
+    *res = NULL;
+    return SUCCESS;
+}
 
 error_t bigpol_sum_action(int argc, const char **argv, char **res) {
     BigPol *f, *g, *h;
