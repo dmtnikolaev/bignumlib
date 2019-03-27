@@ -65,14 +65,6 @@ void BigNat_resize(BigNat *a, size_t new_size);
 void BigNat_copy(const BigNat *a, BigNat *copy);
 
 /**
-* Проверяет является ли это число корректным.
-* 
-* @param a Число.
-* @return int Возвращает число, если число корректное; иначе - 0.
-*/
-int BigNat_is_number(const BigNat *a);
-
-/**
  * Создает новое число на основе его строкого представления.
  * 
  * @param a Новое число.
@@ -88,22 +80,6 @@ error_t BigNat_from_string(BigNat *a, const char *str);
  * @param result Строковое представление числа.
  */
 void BigNat_to_string(const BigNat *a, char **result);
-
-/**
- * Возвращает константу 0.
- * 
- * @param zero Полученная константа.
- * @return error_t Код ошибки или 0, если прошло успешно.
- */
-error_t BigNat_zero(BigNat **zero);
-
-/**
- * Возвращает константу 1.
- * 
- * @param zero Полученная константа.
- * @return error_t Код ошибки или 0, если прошло успешно.
- */
-error_t BigNat_one(BigNat **one);
 
 /**
  * Сравнивает два числа.

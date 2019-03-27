@@ -194,7 +194,7 @@ error_t bignat_sub_proportional_action(int argc, const char **argv,
     return err;
 }
 
-error_t bignat_div_ordered_digit_action(int argc, const char **argv, 
+error_t bignat_div_first_digit_action(int argc, const char **argv, 
                                         char **res) {
     digit d;
     size_t k;
@@ -338,14 +338,6 @@ error_t bigint_negate_action(int argc, const char **argv, char **res) {
     return SUCCESS;
 }
 
-error_t bigint_from_nat_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
-}
-
-error_t bigint_to_nat_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
-}
-
 error_t bigint_sum_action(int argc, const char **argv, char **res) {
     BigInt *a, *b, *c;
     error_t err;
@@ -447,18 +439,6 @@ error_t bigrat_reduce_action(int argc, const char **argv, char **res) {
     BigRat_destroy(c);
 
     return SUCCESS;
-}
-
-error_t bigrat_is_int_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
-}
-
-error_t bigrat_from_int_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
-}
-
-error_t bigrat_to_int_action(int argc, const char **argv, char **res) {
-    return IE_NOTIMPLEMENTED;
 }
 
 error_t bigrat_sum_action(int argc, const char **argv, char **res) {

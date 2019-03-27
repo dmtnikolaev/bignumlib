@@ -55,10 +55,6 @@ void BigNat_copy(const BigNat *a, BigNat *copy) {
     copy->size = a->size;
 }
 
-int BigNat_is_number(const BigNat *a) {
-    return 0;
-}
-
 error_t BigNat_from_string(BigNat *a, const char *str) {
     size_t i, str_len, a_size, num_start;
     error_t err;
@@ -110,14 +106,6 @@ void BigNat_to_string(const BigNat *a, char **result) {
         (*result)[i] = digit_to_char(a->digits[a->size - i - 1]);
     }
     (*result)[i] = '\0';
-}
-
-error_t BigNat_zero(BigNat **zero) {
-    return IE_NOTIMPLEMENTED;
-}
-
-error_t BigNat_one(BigNat **one) {
-    return IE_NOTIMPLEMENTED;
 }
 
 int BigNat_compare(const BigNat *a, const BigNat *b) {
