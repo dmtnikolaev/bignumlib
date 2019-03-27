@@ -101,3 +101,4 @@ error_t char_to_digit(const char ch, digit *d) {
 
 	return SUCCESS;
 }
+

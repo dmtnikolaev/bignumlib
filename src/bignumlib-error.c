@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
 
 char *get_error_message(error_t err) {
     switch (err) {
@@ -36,13 +37,13 @@ char *get_error_message(error_t err) {
 
 void handle_error(error_t err) {
     if (FAIL(err)) {
-        printf("Error: %s. Code: %d", get_error_message(err), (int)err);
+        wprintf(L"Error: %s. Code: %d", get_error_message(err), (int)err);
     }
 }
 
 void handle_critical_error(error_t err) {
     if (FAIL(err)) {
-        printf("Critical error: %s. Code: %d", get_error_message(err), (int)err);
+        wprintf(L"Critical error: %s. Code: %d", get_error_message(err), (int)err);
         exit((int)err);
     }
 }

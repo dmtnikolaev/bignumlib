@@ -1,9 +1,11 @@
 #include "main.h"
 
+#include <locale.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <wchar.h>
 
 #include "actions.h"
 #include "bignat.h"
@@ -13,8 +15,10 @@
 int main(int argc, char **argv) {
     error_t err;
 
+    setlocale(LC_ALL, "");
+
 #ifdef DEBUG
-    printf("DEBUG mode\n");
+    wprintf(L"DEBUG mode\n");
 #endif
 
     // Убираем из аргументов имя приложения.
@@ -24,20 +28,20 @@ int main(int argc, char **argv) {
     err = execute(argc, argv);
 
     handle_error(err);
-    puts("");
+    wprintf(L"\n");
 
 #ifdef DEBUG
     if (argc > 0) {
         return err;
     }
 
-    puts("");
+    wprintf(L"\n");
     while (1) {
         err = debug_execute();
         handle_error(err);
         
-        puts("");
-        puts("");
+        wprintf(L"\n");
+        wprintf(L"\n");
     }
 #endif
 
@@ -69,8 +73,8 @@ error_t execute(int argc, char **argv) {
     }
 
     err = actions_list[i].action(argc, (const char **)argv, &result);
-    if (SUCC(err)) {
-        printf(result);
+    if (SUCC(err) && result != NULL) {
+        wprintf(L"%s", result);
     }
 
     free(result);
@@ -158,7 +162,7 @@ error_t read_arg_from_stdin(char **arg, size_t *arg_len, const char *prompt) {
     error_t err;
     *arg_len = 0;
 
-    printf(prompt);
+    wprintf(L"%s", prompt);
     err = readline(arg, arg_len);
     if (FAIL(err)) {
         return err;
