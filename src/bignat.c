@@ -337,7 +337,7 @@ error_t BigNat_sub_proportional(const BigNat *a, const BigNat *b, digit d,
     return SUCCESS;
 }
 
-error_t BigNat_div_ordered_digit(const BigNat *a, const BigNat *b,
+error_t BigNat_div_first_digit(const BigNat *a, const BigNat *b,
                                  digit *d, size_t *k) {
     int comp;
     BigNat *tmp, *tmp_b_delta;
@@ -417,7 +417,7 @@ error_t BigNat_div_mod(const BigNat *a, const BigNat *b, BigNat *c, BigNat *rem)
 
         c->size = 0;
         while (BigNat_compare(rem, b) >= 0) {
-            BigNat_div_ordered_digit(rem, b, &d, &d_k);
+            BigNat_div_first_digit(rem, b, &d, &d_k);
 
             c->digits[d_k] = d;
             c->size = MAX(d_k + 1, c->size);

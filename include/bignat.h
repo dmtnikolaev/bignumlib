@@ -278,7 +278,7 @@ error_t BigNat_sub_proportional(const BigNat *a, const BigNat *b, digit d,
  * 
  * @author
  */
-error_t BigNat_div_ordered_digit(const BigNat *a, const BigNat *b,
+error_t BigNat_div_first_digit(const BigNat *a, const BigNat *b,
                                  digit *d, size_t *k);
 
 /**
