@@ -333,9 +333,11 @@ error_t BigNat_div_first_digit(const BigNat *a, const BigNat *b,
 
     comp = BigNat_compare(a, b);
     if (comp < 0) {
+        *k = 0;
         *d = 0;
     }
     else if (comp == 0){
+        *k = 0;
         *d = 1;
     }
     else {
@@ -368,6 +370,7 @@ error_t BigNat_div_first_digit(const BigNat *a, const BigNat *b,
         BigNat_destroy(tmp);
         BigNat_destroy(tmp_b_delta);
     }
+
     return SUCCESS;
 }
 
