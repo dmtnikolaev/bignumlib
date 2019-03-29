@@ -20,7 +20,7 @@ def run_tests(tests, config):
 
         print('Tests for action "{}":'.format(name))
 
-        if config['name'] and re.match(config['name'], act_name):
+        if config['name'] and not re.match(config['name'], act_name):
             print('\tSkipped.\n')
             continue
 
