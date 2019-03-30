@@ -1,4 +1,4 @@
-#include "bigpolynom.h"
+#include "bigpol.h"
 
 #include <ctype.h>
 #include <stddef.h>

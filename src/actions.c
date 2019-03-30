@@ -8,7 +8,7 @@
 #include "bigint.h"
 #include "bignumlib-error.h"
 #include "bignat.h"
-#include "bigpolynom.h"
+#include "bigpol.h"
 #include "bigrat.h"
 #include "consts.h"
 #include "help.h"
