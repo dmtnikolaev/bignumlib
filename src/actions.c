@@ -597,17 +597,21 @@ error_t bigpol_mul_scalar_action(int argc, const char **argv, char **res) {
 }
 
 error_t bigpol_mul_expx_action(int argc, const char **argv, char **res) {
-    BigNat *k;
+    size_t k;
     BigPol *f, *h;
     error_t err;
 
-    INIT_ACTION_WITH_TWO_PARAMS(BigPol, BigNat, f, k, argv[0], argv[1], err);
+    if (sscanf(argv[1], "%"SIZE_T_FORMAT_SPEC"x", &k) != 1) {
+        return PE_PARSING;
+    }
+
+    INIT_ACTION_WITH_ONE_PARAM(BigPol, f, argv[0], err);
     BigPol_new(&h);
 
     BigPol_mul_expx(f, k, h);
     BigPol_to_string(h, res);
 
-    FIN_ACTION_WITH_TWO_PARAMS(BigPol, BigNat, f, k);
+    FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
     BigPol_destroy(h);
 
     return SUCCESS;
@@ -631,18 +635,20 @@ error_t bigpol_get_leading_action(int argc, const char **argv, char **res) {
 }
 
 error_t bigpol_get_deg_action(int argc, const char **argv, char **res) {
-    BigNat *deg;
+    size_t deg;
     BigPol *f;
     error_t err;
 
     INIT_ACTION_WITH_ONE_PARAM(BigPol, f, argv[0], err);
-    BigNat_new(&deg);
 
-    BigPol_get_deg(f, deg);
-    BigNat_to_string(deg, res);
+    BigPol_get_deg(f, &deg);
+    *res = (char *)malloc(SIZE_T_MAX_DIGITS * sizeof(char));
+    if (*res == NULL) {
+        handle_critical_error(PE_ALLOC);
+    }
+    sprintf(*res, "%"SIZE_T_FORMAT_SPEC"x", deg);
 
     FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
-    BigNat_destroy(deg);
 
     return SUCCESS;
 }

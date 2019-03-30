@@ -108,7 +108,7 @@ void BigPol_mul_scalar(const BigPol *f, const BigRat *c, BigPol *h);
  * @param k Степень одночлена.
  * @param h Результат.
  */
-void BigPol_mul_expx(const BigPol *f, const BigNat *k, BigPol *h);
+void BigPol_mul_expx(const BigPol *f, const size_t k, BigPol *h);
 
 /**
  * Возвращает старший коэффициент многочлена.
@@ -124,7 +124,7 @@ void BigPol_get_leading(const BigPol *f, BigRat *a_n);
  * @param f Многочлен.
  * @param deg Степень.
  */
-void BigPol_get_deg(const BigPol *f, BigNat *deg);
+void BigPol_get_deg(const BigPol *f, size_t *deg);
 
 /**
  * Выносит из многочлена НОК знаменателей коэффициентов и НОД числителей.

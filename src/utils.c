@@ -102,3 +102,14 @@ error_t char_to_digit(const char ch, digit *d) {
 	return SUCCESS;
 }
 
+size_t count_occurs(const char *str, char s) {
+	size_t i, count;
+	count = 0;
+	for (i = 0; i < strlen(str); i++) {
+		if (str[i] == s) {
+			count++;
+		}
+	}
+	return count;
+}
+

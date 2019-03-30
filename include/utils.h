@@ -85,4 +85,14 @@ error_t str_to_digit(const char *str, digit *d);
  */
 error_t char_to_digit(const char ch, digit *d);
 
+/**
+ * Подсчитывает количество вхождений символа в строке.
+ * 
+ * @param str Строка.
+ * @param s Символ.
+ * @return size_t Количество вхождений.
+ */
+size_t count_occurs(const char *str, char s);
+
 #endif /* !UTILS_H */
+

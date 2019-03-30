@@ -400,6 +400,8 @@ error_t BigNat_div_mod(const BigNat *a, const BigNat *b, BigNat *c, BigNat *rem)
         BigNat_new(&tmp);
         BigNat_new(&shifted_b);
 
+        memset(c->digits, 0, c->available_size);
+
         BigNat_copy(a, rem);
 
         c->size = 0;

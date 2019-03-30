@@ -1,11 +1,13 @@
 #include "bigrat.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "bigint.h"
 #include "bignat.h"
 #include "bignumlib-error.h"
+#include "consts.h"
 
 void BigRat_new(BigRat **a) {
     *a = (BigRat *)malloc(sizeof(BigRat));
@@ -25,6 +27,7 @@ void BigRat_destroy(BigRat *a) {
 
     BigInt_destroy(a->num);
     BigNat_destroy(a->denom);
+    free(a);
 }
 
 void BigRat_copy(const BigRat *a, BigRat *copy) {
@@ -55,6 +58,7 @@ error_t BigRat_to_int(const BigRat *a, BigInt *integ) {
 error_t BigRat_from_string(BigRat *a, const char *str) {
     error_t err;
     char *str_copy, *tok_p;
+    BigRat *tmp;
 
     str_copy = strdup(str);
     if (str_copy == NULL) {
@@ -84,12 +88,21 @@ error_t BigRat_from_string(BigRat *a, const char *str) {
         free(str_copy);
         return err;
     }
+    if (BigNat_is_zero(a->denom)) {
+        free(str_copy);
+        return PE_PARSING;
+    }
 
     tok_p = strtok(NULL, "/");
     if (tok_p != NULL) {
         return PE_PARSING;
     }
     free(str_copy);
+
+    BigRat_new(&tmp);
+    BigRat_reduce(a, tmp);
+    BigRat_copy(tmp, a);
+    BigRat_destroy(tmp);
 
     return SUCCESS;
 }
@@ -132,11 +145,31 @@ void BigRat_to_string(const BigRat *a, char **str) {
     free(num_str);
 }
 
+void BigRat_from_num(BigRat *a, size_t i) {
+    // XXX: переводим число в строку и уже из нее читаем.
+    char *str;
+
+    str = (char *)malloc(SIZE_T_MAX_DIGITS * sizeof(char));
+    if (str == NULL) {
+        handle_critical_error(PE_ALLOC);
+    }
+
+    sprintf(str, "%"SIZE_T_FORMAT_SPEC"x", i);
+    BigRat_from_string(a, str);
+    free(str);
+}
+
 void BigRat_reduce(const BigRat *a, BigRat *b) {
     BigNat *gcd;
 
     BigNat_new(&gcd);
     BigNat_gcd(a->num->nat, a->denom, gcd);
+
+    if (BigNat_is_zero(gcd)) {
+        BigRat_copy(a, b);
+        BigNat_destroy(gcd);
+        return;
+    }
 
     b->num->sign = a->num->sign;
 

@@ -82,6 +82,14 @@ error_t BigRat_from_string(BigRat *a, const char *str);
 void BigRat_to_string(const BigRat *a, char **str);
 
 /**
+ * Переводит число в дробь.
+ * 
+ * @param a Дробь.
+ * @param i Число.
+ */
+void BigRat_from_num(BigRat *a, size_t i);
+
+/**
  * Сокращает дробь.
  * 
  * @param a Дробь.
