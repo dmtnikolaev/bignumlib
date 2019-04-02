@@ -48,13 +48,18 @@ void BigPol_destroy(BigPol *f) {
 }
 
 error_t BigPol_from_string(BigPol *f, const char *str) {
-    const char LIST_SEP = ',';
+    const char LIST_SEP = ',', POW_SEP = '^';
     error_t err;
     char *str_c;
-    size_t i, str_len, coeff_start, coeffs_index;
+    size_t i, str_len, substr_start, pow;
+    int is_pow_present;
+    BigRat *tmp_coeff;
 
     err = SUCCESS;
-    coeff_start = 0;
+    substr_start = 0;
+    is_pow_present = 0;
+
+    BigRat_new(&tmp_coeff);
 
     str_c = strdup(str);
     if (str_c == NULL) {
@@ -62,32 +67,76 @@ error_t BigPol_from_string(BigPol *f, const char *str) {
     }
     str_len = strlen(str_c);
 
-    f->size = count_occurs(str_c, LIST_SEP) + 1;
-    coeffs_index = f->size-1;
-
-    BigPol_resize(f, f->size);
-
     for (i = 0; i < str_len+1; i++) {
         if (FAIL(err)) {
-            return err;
+            break;
         }
 
-        if (str_c[i] == LIST_SEP || str_c[i] == '\0') {
+        if (str_c[i] == POW_SEP) {
+            if (is_pow_present) {
+                err = PE_PARSING;
+                break;
+            }
+
             str_c[i] = '\0';
 
-            // Если две запятые рядом, то оставляем 0.
-            if (i > coeff_start) {
-                err = BigRat_from_string(f->coeffs[coeffs_index], str_c + coeff_start);
-            }
-            coeffs_index--;
-            coeff_start = i+1;
+            err = BigRat_from_string(tmp_coeff, str_c + substr_start);
+
+            substr_start = i+1;
+            is_pow_present = 1;
         }
+
+        if (str_c[i] == LIST_SEP || i == str_len) {
+            str_c[i] = '\0';
+
+            if (i == str_len && !is_pow_present) {
+                err = BigRat_from_string(tmp_coeff, str_c + substr_start);
+                pow = 0;
+                is_pow_present = 1;
+                if (FAIL(err)) {
+                    break;
+                }
+            }
+            else {
+                if (!is_pow_present) {
+                    err = PE_PARSING;
+                    break;
+                }
+                if (sscanf(str_c + substr_start, "%"SIZE_T_FORMAT_SPEC"u", &pow) != 1) {
+                    err = PE_PARSING;
+                    break;
+                }
+            }
+
+            if (f->size <= pow) {
+                BigPol_resize(f, pow+1);
+                f->size = pow+1;
+            }
+
+            BigRat_copy(tmp_coeff, f->coeffs[pow]);
+
+            // Очищаем tmp_coeff.
+            tmp_coeff->num->sign = 0;
+            tmp_coeff->num->nat->digits[0] = 0;
+            tmp_coeff->num->nat->size = 1;
+            tmp_coeff->denom->digits[0] = 1;
+            tmp_coeff->denom->size = 1;
+
+            substr_start = i+1;
+            is_pow_present = 0;
+        }
+    }
+
+    free(str_c);
+    BigRat_destroy(tmp_coeff);
+
+    if (FAIL(err)) {
+        return err;
     }
 
     while (f->size > 1 && BigNat_is_zero(f->coeffs[f->size-1]->num->nat)) {
         f->size--;
     }
-
     return err;
 }
 
@@ -135,7 +184,7 @@ void BigPol_to_string(const BigPol *f, char **str) {
             coeff_strs[i][0] = ' ';
         }
         pow_strs[i] = (char *)malloc(SIZE_T_MAX_DIGITS * sizeof(char));
-        sprintf(pow_strs[i], "%"SIZE_T_FORMAT_SPEC"x", i);
+        sprintf(pow_strs[i], "%"SIZE_T_FORMAT_SPEC"u", i);
 
         // Длинна строки - сумма длин строк для каждого многочлена.
         // Строка многочлена формируется из пробела перед коэффициентом,
