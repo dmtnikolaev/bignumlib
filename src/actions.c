@@ -601,7 +601,7 @@ error_t bigpol_mul_expx_action(int argc, const char **argv, char **res) {
     BigPol *f, *h;
     error_t err;
 
-    if (sscanf(argv[1], "%"SIZE_T_FORMAT_SPEC"x", &k) != 1) {
+    if (sscanf(argv[1], "%"SIZE_T_FORMAT_SPEC"u", &k) != 1) {
         return PE_PARSING;
     }
 
@@ -646,7 +646,7 @@ error_t bigpol_get_deg_action(int argc, const char **argv, char **res) {
     if (*res == NULL) {
         handle_critical_error(PE_ALLOC);
     }
-    sprintf(*res, "%"SIZE_T_FORMAT_SPEC"x", deg);
+    sprintf(*res, "%"SIZE_T_FORMAT_SPEC"u", deg);
 
     FIN_ACTION_WITH_ONE_PARAM(BigPol, f);
 

@@ -154,7 +154,7 @@ void BigRat_from_num(BigRat *a, size_t i) {
         handle_critical_error(PE_ALLOC);
     }
 
-    sprintf(str, "%"SIZE_T_FORMAT_SPEC"x", i);
+    sprintf(str, "%"SIZE_T_FORMAT_SPEC"u", i);
     BigRat_from_string(a, str);
     free(str);
 }
