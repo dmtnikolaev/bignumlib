@@ -45,7 +45,7 @@ void handle_error(error_t err) {
 
 void handle_critical_error(error_t err) {
     if (FAIL(err)) {
-        wprintf(L"Critical error: "PURE_C_STRING_FORMAT_SPEC". Code: %d", get_error_message(err), (int)err);
+        wprintf(L"Critical error: "PURE_C_STRING_FORMAT_SPEC". Code: %d\n", get_error_message(err), (int)err);
         exit((int)err);
     }
 }
