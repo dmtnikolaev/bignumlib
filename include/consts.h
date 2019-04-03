@@ -1,7 +1,7 @@
 #ifndef CONSTS_H
 #define CONSTS_H
 
-#define BIGNUMLIB_VERSION "1.0"
+#define BIGNUMLIB_VERSION "1.1"
 
 #define SIZE_T_MAX_DIGITS ( 241 * sizeof(size_t) / 100 + 1 )
 
