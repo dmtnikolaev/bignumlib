@@ -543,6 +543,10 @@ error_t bigrat_div_action(int argc, const char **argv, char **res) {
 
 error_t bigpol_help_action(int argc, const char **argv, char **res) {
     wprintf(L"%ls", pol_help_1);
+    wprintf(L"%ls", pol_help_2);
+    wprintf(L"%ls", pol_help_3);
+    wprintf(L"%ls", pol_help_4);
+    wprintf(L"%ls", pol_help_5);
     *res = NULL;
     return SUCCESS;
 }

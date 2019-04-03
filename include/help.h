@@ -37,7 +37,7 @@ static const wchar_t help_3[] = L"\
 .\\bignumlib.exe int.negate -10\n\
 .\\bignumlib.exe rat.mul 5 4/15\n\
 .\\bignumlib.exe int.sum -5 -4\n\
-.\\bignumlib.exe pol.mul-scalar \"(2, 0, -1)\" 5 \n\
+.\\bignumlib.exe pol.mul-scalar \"2^2, 3^1, -1\" 5 \n\
 ";
 
 static const wchar_t nat_help_1[] = L"\
@@ -175,6 +175,9 @@ static const wchar_t pol_help_1[] = L"\
 0. Так, например, набор (1,3/4,0,-2) соответствует\n\
 многочлену x^3 + 3/2x^2 - 2.\n\
 \n\
+";
+
+static const wchar_t pol_help_2[] = L"\
 * pol.help\n\
     Выводит справку для модуля многочленов.\n\
 \n\
@@ -187,6 +190,9 @@ static const wchar_t pol_help_1[] = L"\
 * pol.mul-scalar f q\n\
     Умножает f на рациональное число q.\n\
 \n\
+";
+
+static const wchar_t pol_help_3[] = L"\
 * pol.mul-expx f k\n\
     Умножает f на x^k, где k - натуральное.\n\
 \n\
@@ -196,6 +202,9 @@ static const wchar_t pol_help_1[] = L"\
 * pol.deg f\n\
     Возвращает степень многочлена.\n\
 \n\
+";
+
+static const wchar_t pol_help_4[] = L"\
 * pol.fac f\n\
     Выносит из многочлена НОК знаменателей\n\
     коэффициентов и НОД числителей.\n\
@@ -206,6 +215,9 @@ static const wchar_t pol_help_1[] = L"\
 * pol.div f g\n\
     Возвращает частное от деления f на g.\n\
 \n\
+";
+
+static const wchar_t pol_help_5[] = L"\
 * pol.mod f g\n\
     Возвращает остаток от деления f на g.\n\
 \n\
@@ -217,7 +229,6 @@ static const wchar_t pol_help_1[] = L"\
 \n\
 * pol.nmr f\n\
     Преобразует все кратные корни f в простые.\n\
-\n\
 ";
 
 #endif
